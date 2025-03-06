@@ -1,4 +1,4 @@
-package com.csc481.fullstack_backend;
+package com.restaurant.fullstack_backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

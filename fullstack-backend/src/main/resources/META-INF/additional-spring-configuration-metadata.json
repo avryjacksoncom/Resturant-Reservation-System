@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "spting.datasource.username",
+  "type": "java.lang.String",
+  "description": "A description for 'spting.datasource.username'"
+}]}
