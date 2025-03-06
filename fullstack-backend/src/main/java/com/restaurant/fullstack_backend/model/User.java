@@ -1,4 +1,4 @@
-package com.restaurant.fullstack_backend.repository;
+package com.restaurant.fullstack_backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
