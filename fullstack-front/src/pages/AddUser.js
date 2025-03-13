@@ -6,9 +6,10 @@ export default function AddUser() {
   let navigate = useNavigate();
 
   // Adjusted user object based on backend entity
-  const [user, setUser] = useState({
+  const [user, setUser, partySize] = useState({
     firstName: "",
     phoneNumber: "",
+    partySize: "",
   });
 
   const { firstName, phoneNumber } = user;
@@ -32,7 +33,7 @@ export default function AddUser() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
-                First Name
+                Full Name
               </label>
               <input
                 type={"text"}
@@ -55,6 +56,19 @@ export default function AddUser() {
                 value={phoneNumber}
                 onChange={(e) => onInputChange(e)}
               />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="PartySize" className="form-label">
+                Party Size
+              </label>
+              <input
+                type={"number"}
+                classname="form-control"
+                placeholder="Enter Party Size"
+                name="partySize"
+                value={partySize}
+                onChange={(e) => onInputChange(e)}
+                />
             </div>
             <button type="submit" className="btn btn-outline-primary">
               Submit
