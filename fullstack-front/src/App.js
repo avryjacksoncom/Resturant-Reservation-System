@@ -17,10 +17,10 @@ function App() {
 
       <Routes>
 
-        <Route exact path="/"element={<RobertoMain/>}/>
+        <Route exact path="/page"element={<RobertoMain/>}/>
         <Route exact path="/order" element={<RobertoOrderPage/>}/>
         <Route exact path="/reservations" element={<ReservationPage/>}/>
-        <Route exact path = "/index" element= {<Index/>}/>
+        <Route exact path = "/" element= {<Index/>}/>
         
       </Routes>
       </Router>
