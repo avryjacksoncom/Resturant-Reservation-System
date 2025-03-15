@@ -1,14 +1,11 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import "./style.css";
 
-export default function robertoOrderPage() {
+export default function RobertoOrderPage() {
     return (
         <div className="container">
-            <Helmet>
                 <title>Reservations</title>
-                <link rel="stylesheet" href="style.css" />
-            </Helmet>
-            <a href="index.html">Return to Menu</a>
+            <a href="/">Return to Menu</a>
             <h2>Order Page</h2>
         </div>
     );

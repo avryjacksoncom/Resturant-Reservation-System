@@ -1,8 +1,9 @@
 import React from "react";
+
 import { Link } from "react-router-dom"; 
+import "./style.css";
 
-
-export default function robertoMain() {
+export default function RobertoMain() {
     return (
         <div>
             <section id="homepage-hero">
