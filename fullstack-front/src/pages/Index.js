@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import bgVideo from "./background-video.mp4";
+import bgVideo2 from "./background-video2.mp4";
+
 
 export default function Index() {
   return (
     <div>
       <section id="homepage-hero">
-        <video autoPlay muted loop id="hero-video">
-          <source src="background-video.mp4" type="video/mp4" />
+        <video autoPlay muted loop id="hero-video"  src= {bgVideo}>
           Your browser does not support the video tag.
         </video>
         <div className="hero-content">
