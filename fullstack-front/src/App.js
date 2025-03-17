@@ -21,7 +21,8 @@ function App() {
         <Route exact path="/order" element={<RobertoOrderPage/>}/>
         <Route exact path="/reservations" element={<ReservationPage/>}/>
         <Route exact path = "/" element= {<Index/>}/>
-        
+        <Route exact path = "/add-user" element = {<AddUser/>}/>
+
       </Routes>
       </Router>
      
