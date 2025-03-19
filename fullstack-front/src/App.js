@@ -4,17 +4,8 @@ import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import{ Home } from './parts/HomeSection/Home.js';
 import Footer from './parts/FooterSection/Footer.js';
+import Header from './parts/HeaderSection/Header.js';
 
-// import Reservation from './parts/ReservationSection';
-// import Order from './parts/OrderSect/Footer.js
-// import Header from './parts/HeaderSection';
-// import Hero from './parts/Herosection';
-
-
-// import RobertoMain from './pages/RobertoMain'
-// import ReservationPage from './pages/ReservationPage';
-// import Index from "./pages/Index";
-// import AddUser from './pages/AddUser';
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -22,6 +13,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <Header/>
       <Router>
 
       <Routes>
