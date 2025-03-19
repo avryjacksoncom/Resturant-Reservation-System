@@ -2,15 +2,15 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import './Home.css';
 import Footer from '../FooterSection/Footer.js';
-// import Hero from "./parts/HeroSection";
-// import Hero from "./parts/HeroSection";
-// import Footer from './FooterSection/Footer';
+import Header from '../HeaderSection/Header.js';
+
+
 
 export const Home = () => {
     return (
         <>
   <main>
-    <section id="Appetizers" className="menu-select">
+    <section id="Appetizers" className="menu-select"> 
       <h2>Appetizers</h2>
       <div className="menu-grid">
         {/* Menu Items for Appetizers */}
@@ -77,8 +77,8 @@ export const Home = () => {
         </div>
       </div>
     </section>
-    <section id="Deserts" className="menu-select">
-      <h2>Deserts</h2>
+    <section id="Desserts" className="menu-select">
+      <h2>Desserts</h2>
       <div className="menu-grid">
         {/* Menu Items for Deserts */}
         <div className="menu-item">

@@ -1,6 +1,7 @@
 //this is the header from my HTML mock up
 import React from 'react';
 import './Header.css';
+import {Link} from "react-router-dom";
 
 const Header =() =>{
     return (
@@ -9,12 +10,13 @@ const Header =() =>{
                 The Worm
             </h1>
             <nav>
-                <a href ="Appetizers">Appetizers</a>
-                <a href ="Entrees">Entrees</a>
-                <a href ="Desserts">Desserts</a>
-                <a href ="Drinks">Drinks</a>
-                <a href ="Order">Order Now</a>
-                <a href ="Reservation">Reservations</a>
+                <a href ="#Appetizers">Appetizers</a>
+                <a href ="#Entrées">Entrées</a>
+                <a href ="#Desserts">Desserts</a>
+                <a href ="#Drinks">Drinks</a>
+                
+                <Link to ="/OrderSection">OrderPage</Link>
+                <Link to ="/ReservationSection">Reservation</Link>
             </nav>
         </header>
     )
