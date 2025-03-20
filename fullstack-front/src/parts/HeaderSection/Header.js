@@ -2,6 +2,7 @@
 import React from 'react';
 import './Header.css';
 import {Link} from "react-router-dom";
+import Order from '../OrderSection/Order.js';
 
 const Header =() =>{
     return (
@@ -10,13 +11,13 @@ const Header =() =>{
                 The Worm
             </h1>
             <nav>
-                <a href ="#Appetizers">Appetizers</a>
-                <a href ="#Entrées">Entrées</a>
-                <a href ="#Desserts">Desserts</a>
-                <a href ="#Drinks">Drinks</a>
+                <a href ="/#Appetizers">Appetizers</a>
+                <a href ="/#Entrées">Entrées</a>
+                <a href ="/#Desserts">Desserts</a>
+                <a href ="/#Drinks">Drinks</a>
                 
-                <Link to ="/OrderSection">OrderPage</Link>
-                <Link to ="/ReservationSection">Reservation</Link>
+                <Link to="/OrderSection">Order LAH</Link>
+                {/* <Link to="/Reservation">Reservation</Link> */}
             </nav>
         </header>
     )
