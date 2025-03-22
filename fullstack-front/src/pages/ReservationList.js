@@ -34,7 +34,7 @@ export default function ReservationList() {
                             <th scope="col">Group Size</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Time</th>
+                            <th scope="col">Extra</th>
                         </tr>
                     </thead>
                     <tbody>
