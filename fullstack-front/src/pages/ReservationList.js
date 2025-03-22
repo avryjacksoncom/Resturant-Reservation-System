@@ -18,7 +18,7 @@ export default function ReservationList() {
     };
 
     const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:8080/users/${id}`)
+        await axios.delete(`http://localhost:8080/user/${id}`)
         loadUsers();
     }
 
@@ -31,7 +31,7 @@ export default function ReservationList() {
                         <tr>
                             <th scope="col"># ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Group Number</th>
+                            <th scope="col">Group Size</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Date</th>
                             <th scope="col">Time</th>
@@ -40,16 +40,19 @@ export default function ReservationList() {
                     <tbody>
                         {users.map((user, index) => (
                             <tr>
-                                <th scope="row" key={index}>{index + 1}</th>
+                                <th scope="row" key={index}> {index + 1} </th>
                                 <td>{user.reservationId}</td>
                                 <td>{user.firstName}</td>
                                 <td>{user.guestAmount}</td>
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.reservationDate}</td>
                                 <td>
-                                    <button className="btn btn-primary mx-2">Edit</button>
-                                    <button className="btn btn-danger mx-2"
-                                        onClick={() => deleteUser(user.reservationId)}>Delete</button>
+                                    <Link className="btn btn-primary mx-2"
+                                        to={`/editreservation/${user.id}`}> Edit </Link>
+                                    <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))
