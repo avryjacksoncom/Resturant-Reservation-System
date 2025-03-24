@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import './Order.css';
-import { Link } from "react-router-dom";
-import Home from '../HomeSection/Home.js';
-import Footer from '../FooterSection/Footer.js';
+// import { Link } from "react-router-dom";
+// import Home from '../HomeSection/Home.js';
+// import Footer from '../FooterSection/Footer.js';
 import Sound from '../../Assets/Sounds/knockingDoor.mp3'
 
 //same issue with Home with the double dot thing. In this case since this is an entirely different file

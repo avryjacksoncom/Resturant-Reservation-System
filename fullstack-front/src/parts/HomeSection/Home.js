@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Home.css';
-import Footer from '../FooterSection/Footer.js';
-import Header from '../HeaderSection/Header.js';
+// import Footer from '../FooterSection/Footer.js';
+// import Header from '../HeaderSection/Header.js';
 // import Hero from '../HeroSection/Hero.js';
 import Video from '../../Assets/Videos/background-video.mp4';
 
@@ -25,6 +25,7 @@ export const Home = () => {
 
             <Link to="/OrderSection"><button className="order-button">Order Now!</button></Link>
             <Link to="/ReservationSection"> <button className="reservation-button">Reserve A Spot!</button></Link>
+            {/* <Link to="/test"><button className="test button">this is testing a feature not actual use! PLEASE REMOVE</button></Link> */}
 
 
           </div>
@@ -32,7 +33,7 @@ export const Home = () => {
         <section id="Appetizers" className="menu-select">
           <h2>Appetizers</h2>
           <div className="menu-grid">
-            {/* Menu Items for Appetizers */}
+         
             <div className="menu-item">
               <h3>Grass Shavings</h3>
               <p className="description">
@@ -64,7 +65,7 @@ export const Home = () => {
         <section id="Entrées" className="menu-select">
           <h2>Entrées</h2>
           <div className="menu-grid">
-            {/* Menu Items for Entrées */}
+       
             <div className="menu-item">
               <h3>Cigarettes</h3>
               <p className="description">
@@ -99,7 +100,7 @@ export const Home = () => {
         <section id="Desserts" className="menu-select">
           <h2>Desserts</h2>
           <div className="menu-grid">
-            {/* Menu Items for Deserts */}
+      
             <div className="menu-item">
               <h3>Ice Cream</h3>
               <p className="description">
@@ -126,7 +127,7 @@ export const Home = () => {
         <section id="Drinks" className="menu-select">
           <h2>Drinks</h2>
           <div className="menu-grid">
-            {/* Menu Items for Drinks */}
+          
             <div className="menu-item">
               <h3>Water</h3>
               <p className="description">
@@ -154,7 +155,7 @@ export const Home = () => {
             </div>
           </div>
         </section>
-      {/* </main> */}
+     
     </div>
 
   );
