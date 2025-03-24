@@ -12,35 +12,28 @@ const Order = () => {
     useEffect(() => {
         const timer =setTimeout(() => {
             const audio = new Audio(Sound);
-            audio.play();
-    }, 180000);
+            audio.play().catch(err => console.log("Playback Error: ",err));
+    }, 60000);
     return () => clearTimeout(timer);
     },[]);
    return (
-        <div className="box">
+        <div className="white-box">
             <header>
                 <h1>The Worm</h1>
-                <p className="tagline">Online odering feature coming soon!</p>
+                <p class="tagline">digging its way to your hearts </p>
             </header>
-            <section id="content">
-                <h2>BEING LAZY WOULD SOON BE EVEN BETTER WITH THE WORM!!!</h2>
-                <p>We are in the middle of capturing a bed of worms to bring the AMAZING grub we make directly to your home.
-                    We know where you live...
-                </p>
-                <form id="singup-form">
-                    <label htmlFor="email">Sign up for Updates!</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Your email here!"
-                        required=""
-                    />
-                    <button type="submit">Lemme Know What Y'all Dig UP!!!</button>
-                </form>
 
+            <section className="coming-soon">
+                <h2>Coming Soon</h2>
+                
+                <form id="signup-updates">
+                    <label for="email">Stay up to date for everyone we dig up</label>
+                    <input type="email" name="email" placeholder="Email Here!" required/>
+                    <button type="submit-button">Notify me</button>
+                </form>
             </section>
         </div>
+
     )
 }
 

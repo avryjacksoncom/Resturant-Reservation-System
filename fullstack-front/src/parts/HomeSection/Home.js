@@ -23,8 +23,8 @@ export const Home = () => {
             <h2>Welcom to The WORM</h2>
             <p>Enjoy the food... or else</p>
 
-            <Link to="/Order"><button className="order-button">Order Now!</button></Link>
-            <Link to="/Reservation"> <button className="reservation-button">Reserve A Spot!</button></Link>
+            <Link to="/OrderSection"><button className="order-button">Order Now!</button></Link>
+            <Link to="/ReservationSection"> <button className="reservation-button">Reserve A Spot!</button></Link>
 
 
           </div>
