@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -6,7 +6,7 @@ import{ Home } from './parts/HomeSection/Home.js';
 import Footer from './parts/FooterSection/Footer.js';
 import Header from './parts/HeaderSection/Header.js';
 // import Hero from './parts/HeroSection/Hero.js';
-import Order from './parts/OrderSection/Order.js'
+import Order from './parts/OrderSection/Order';
 // import ReservationSection from './parts/ReservationSection/Reservation.js';
 
 
@@ -25,7 +25,7 @@ function App() {
           <Routes>
           
             <Route exact path = "/" element= {<Home />}/>
-            <Route path ="/parts/OrderSection" element={<Order />}/>
+            <Route path ="/OrderSection" element={<Order />}/>
             
             {/* <Route path="/ReservationSection" element={<ReservationSection/>} />  */}
           

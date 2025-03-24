@@ -2,7 +2,7 @@
 import React from 'react';
 import './Header.css';
 import {Link} from "react-router-dom";
-import Order from '../OrderSection/Order.js';
+// import Order from '../OrderSection/Order';
 
 const Header =() =>{
     return (
@@ -16,7 +16,7 @@ const Header =() =>{
                 <a href ="/#Desserts">Desserts</a>
                 <a href ="/#Drinks">Drinks</a>
                 
-                <Link to="/OrderSection">Order LAH</Link>
+                <Link to="/OrderSection">Order</Link>
                 {/* <Link to="/Reservation">Reservation</Link> */}
             </nav>
         </header>

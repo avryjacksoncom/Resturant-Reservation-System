@@ -7,7 +7,7 @@ import './Footer.css';
     return(
         <footer className="footer">
             <p>
-                Created by <a href="nothingPage.html">The Worms</a>© 2025
+                Created by <a href="nothingPage.html">The Worms</a> © 2025
             </p>
         </footer>
     )
