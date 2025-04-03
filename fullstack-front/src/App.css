@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;  /* Wraps the buttons to the next line if they overflow */
+  gap: 10px;        /* Adds space between buttons */
+  justify-content: flex-start; /* Align buttons to the left */
+}
+
+.grid-button button {
+  width: 80px; /* Width of each button */
+  height: 40px; /* Height of each button */
+  margin: 5px;  /* Space around the button */
+}

@@ -9,16 +9,20 @@ import { format } from 'date-fns';
 export default function CalendarPage() {
   const [unformatedDate, setDate] = useState(new Date());
   const [dateYearFormat,setDateYearFormat] = useState(new Date());
+  const [toDateDataType,setToDateDataType] = useState(new Date());
   const [timeButton, setTimeButton] = useState('');
-
   const [userLoad,setUserLoad] = useState([]);
+
   const [users_state, setUsers] = useState([]);
   const [filterValue, setFilterValue] = useState('');
-  
+
+  const [inputValue, setInputValue] = useState('');
+
     useEffect(() => {
     loadUsers();
-    
+
   }, []);
+
 
     const loadUsers = async () => 
     {
@@ -29,10 +33,26 @@ export default function CalendarPage() {
 
     const onChange = async (newDate) => {
         const result = await axios.get("http://localhost:8080/user");
-        console.log("THIS IS MY DATA  ",result);
+        // console.log("THIS IS MY DATA  ",result);
         setDate(newDate)
-        const formattedDate = format(unformatedDate,'yyyy-MM-dd');
+        //SELECTED DATE
+
+        // unformmatedDate is basically the dare we change for setDate
+        // in other words when we do setDate, the newDate variable is the one thats onchanging
+        //when we click the calemdar.
+        //so these our differnt.
+        //what i was trying to do is that these onchanges are the same. i should seperate tem.
+
+        // IS THE FORMATTED DATE then we put that formatted date in the setDate
+        // year function
+        const formattedDate = format(newDate,'yyyy-MM-dd');
+        // i just use setuserLoad to reload api data for the filetered data
         setUserLoad(result.data);
+
+        // setdate year fomrmat what this does is it takes the formatteddate and just sets it in that variable
+        // const [dateYearFormat,setDateYearFormat] = useState(new Date());
+        
+        // THIS IS JUS
         setDateYearFormat(formattedDate)
   
     };
@@ -40,15 +60,19 @@ export default function CalendarPage() {
     // const filterNotAvailableDate = (exactDateAvailable) => { return userLoad.filter(user => user.date !== exactDate)
     // };
 
+
+    const filteredDataDateAvailable = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
+    };
+    const filteredUsersOpen = filteredDataDateAvailable(dateYearFormat)
+
+
     const filteredDataDate = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
     };
     const filteredUsers = filteredDataDate(dateYearFormat)
-    const filteredUsersAvailable = 
-    console.log("TIHS IS MY DATE",unformatedDate)
 
+    console.log("TIHS IS MY DATE",dateYearFormat)
 
-
-    // Adjusted user object based on backend entity
+    // Adjusted user object based on backend entityx
     const [user, setUser] = useState({
       firstName: "",
       phoneNumber: "",
@@ -59,10 +83,48 @@ export default function CalendarPage() {
 
     const { firstName, phoneNumber, date, time, partySize } = user;
 
-    const onInputChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
-    };
+    // const onDateChangeInput = (e) => {
+    //   const { name, value } = e.target;
     
+    //   if (name === 'date') {
+    //     // Format the date before setting it in state
+    //     const formattedDateChange = new Date(value); // Convert to a Date object
+    //     setUser({ ...user, [name]: formattedDateChange }); // Update the date field
+    //   }
+    // };
+
+    const onInputChange = (e) => {
+      const { name, value } = e.target;
+    
+      if (name === 'date') {
+        // Update the user object with the selected date
+        setUser({ ...user, [name]: value });
+      } else {
+        // For other fields, update the user object normally
+        setUser({ ...user, [name]: value });
+      }
+    };
+//    const onInputChange = (e) => {
+//   const { name, value } = e.target;
+
+//   if (name === 'date') 
+//     {
+//     // If the field is date, call onDateChangeInput separately
+//     onDateChangeInput(e);
+//   } else 
+//   {
+//     // For other fields, update the user state normally
+//     setUser({ ...user, [name]: value });
+//   }
+// };
+
+// const onInputChange = (e) => {
+      
+      
+//   setUser({ ...user, [e.target.name]: e.target.value });
+// };
+
+
     const onClickButtonChange = (e) =>
     {
         setTimeButton(e)
@@ -91,12 +153,14 @@ export default function CalendarPage() {
       }
     };
 
+    console.log("date data type   ", toDateDataType)
+
   return (
     <div className="container">
           <div className="row">
               <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                <h2 className="text-center m-4">Register User</h2>
-      
+                <h2 className="text-center m-4">Reservation</h2>
+    
                 <form onSubmit={onSubmit}>
                   <div className="mb-3">
                     <label htmlFor="FirstName" className="form-label">
@@ -129,26 +193,28 @@ export default function CalendarPage() {
                       Time
                     </label>
                     <input
-                      // type="time"
+                      type="time"
+                      // type="text"
                       className="form-control"
                       name="time"
                       value={time}
-                      defaultValue={timeButton}
-                      placeholder={timeButton}
                       onChange={onInputChange}
                     />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="Date" className="form-label">
-                      Date
+                      Date Enter "yyyy-mm-dd"to confirm 
                     </label>
+                    <p>Selected date: {unformatedDate.toDateString()}</p>
+               
+                    {/* <p>Selected date: {dateYearFormat}</p> */}
                     <input
                       // type="date"
+                      type="text"
                       className="form-control"
                       name="date"
                       value={date}
-                      defaultValue={dateYearFormat}
-                      placeholder={dateYearFormat}
+                      placeholder="yyyy-mm-dd" 
                       onChange={onInputChange}
                     />
                   </div>
@@ -177,9 +243,20 @@ export default function CalendarPage() {
         <div className = "calendar-container">
           <ReactCalendar onChange={onChange}/>
           <p>Selected date: {unformatedDate.toDateString()}</p>
+          
           <div>
           <h1>not available</h1>
       {filteredUsers.map(user => (
+        <div key={user.reservationId}>
+          {user.firstName}
+           ({user.date} reservationDate)
+           ({user.time} rservationTime)
+           </div>
+      ))}
+    </div>
+    <div>
+          <h1>available</h1>
+      {filteredUsersOpen.map(user => (
         <div key={user.reservationId}>
           {user.firstName}
            ({user.date} reservationDate)
@@ -255,35 +332,11 @@ export default function CalendarPage() {
       <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
-          <h1>available</h1>
           
         </div>
 
         <div>
-          <tr>
-                            <th scope="col">#</th>
-                            <th scope ="col">ReservationID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Party Size</th>
-                            <th scope="col">Phone Number</th>
-                        </tr>
-            <tbody>
-                                  {userLoad.map((user, index) => (
-                                      <tr key={user.reservation_id}>
-                                          <th scope="row">{index + 1}</th>
-                                          <td>{user.reservationId}</td>
-                                          <td>{user.firstName}</td>
-                                          <td>{user.time}</td>
-                                          <td>{user.date}</td>
-                                          <td>{user.partySize}</td>
-                                          <td>{user.phoneNumber}</td>
-
-                                          
-                                      </tr>
-                                  ))}
-                              </tbody>
+  
         </div>
      
     </div>
