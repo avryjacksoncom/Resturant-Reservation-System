@@ -29,11 +29,13 @@ export default function AddUser() {
       return;
     }
 
-    try {
+    try 
+    {
       // Send data to the backend using POST request
       await axios.post("http://localhost:8080/user", user); 
       navigate("/"); // Navigate after submission
-    } catch (error) {
+    } catch (error) 
+    {
       console.error("There was an error adding the user!", error);
       alert("Error adding user. Please try again.");
     }

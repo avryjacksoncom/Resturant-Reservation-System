@@ -25,6 +25,7 @@ export default function ViewUser() {
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>
+                            <th scope ="col">ReservationID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Time</th>
                             <th scope="col">Date</th>
@@ -37,19 +38,27 @@ export default function ViewUser() {
                         {users_state.map((user, index) => (
                             <tr key={user.reservation_id}>
                                 <th scope="row">{index + 1}</th>
+                                <td>{user.reservationId}</td>
                                 <td>{user.firstName}</td>
                                 <td>{user.time}</td>
                                 <td>{user.date}</td>
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
-                                {/* <td>
+                                 <td>
                                     <Link
                                         className="btn btn-primary"
                                         to={`/viewuser/${user.reservation_id}`}
                                     >
-                                        View
+                                        Delete
                                     </Link>
-                                </td> */}
+                                    <Link
+                                        className="btn btn-primary"
+                                        to={`/viewuser/${user.reservation_id}`}
+                                    >
+                                        Modify
+                                    </Link>
+                                </td> 
+                                
                             </tr>
                         ))}
                     </tbody>
