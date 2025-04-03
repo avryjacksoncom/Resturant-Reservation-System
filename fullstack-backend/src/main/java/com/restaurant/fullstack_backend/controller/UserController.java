@@ -26,12 +26,12 @@ public class UserController {
         return userRepository.save(newUser);
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<?> addUsers(@RequestBody List<User> users)
-    {
-        userRepository.saveAll(users);
-        return ResponseEntity.ok("Users saved successfully");
-    }
+    // @PostMapping("/userarr")
+    // public ResponseEntity<?> addUsers(@RequestBody List<User> users)
+    // {
+    //     userRepository.saveAll(users);
+    //     return ResponseEntity.ok("Users saved successfully");
+    // }
 
     @GetMapping("/user")
     List<User> getAllUsers()
