@@ -51,6 +51,7 @@ export default function ViewUser() {
                                     >
                                         Delete
                                     </Link>
+                                    
                                     <Link
                                         className="btn btn-primary"
                                         to={`/viewuser/${user.reservation_id}`}
