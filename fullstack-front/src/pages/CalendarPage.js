@@ -36,10 +36,14 @@ export default function CalendarPage() {
         setDateYearFormat(formattedDate)
   
     };
+    
+    // const filterNotAvailableDate = (exactDateAvailable) => { return userLoad.filter(user => user.date !== exactDate)
+    // };
 
     const filteredDataDate = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
     };
     const filteredUsers = filteredDataDate(dateYearFormat)
+    const filteredUsersAvailable = 
     console.log("TIHS IS MY DATE",unformatedDate)
 
 
