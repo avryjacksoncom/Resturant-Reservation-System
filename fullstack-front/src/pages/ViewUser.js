@@ -36,7 +36,7 @@ export default function ViewUser() {
                     </thead>
                     <tbody>
                         {users_state.map((user, index) => (
-                            <tr key={user.reservation_id}>
+                            <tr key={user.reservationId}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.reservationId}</td>
                                 <td>{user.firstName}</td>
