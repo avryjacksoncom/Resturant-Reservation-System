@@ -2,19 +2,49 @@ package com.restaurant.fullstack_backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
+    // @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId; // primarykey
-
-    private String firstName, lastName, phoneNumber, customerEmail, reservationDate;
-    private int guestAmount, tableNumber;
+    private String firstName;
+    private String phoneNumber;
+    private int partySize;
+    private LocalDate date; // Stores the date of reservation
+    private LocalTime time; // Stores the time of reservation
 
     // Getters and setters
+
+    public int getPartySize() {
+        return partySize;
+    }
+
+    public void setPartySize(int partySize) {
+        this.partySize = partySize;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 
     public Long getReservationId() {
         return reservationId;
@@ -32,16 +62,6 @@ public class User {
         this.firstName = firstName;
     }
 
-    public void setlastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -49,45 +69,4 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public void setguestAmount(int guestAmount)
-    {
-        this.guestAmount = guestAmount;
-    }
-
-    public int getguestAmount()
-    {
-        return guestAmount;
-    }
-
-    public void setcustomerEmail(String customerEmail)
-    {
-        this.customerEmail = customerEmail;
-    }
-
-    public String getcustomerEmail()
-    {
-        return customerEmail;
-    }
-
-    public void settableNumber(int tableNumber)
-    {
-        this.tableNumber = tableNumber;
-    }
-
-    public int gettableNumber()
-    {
-        return tableNumber;
-    }
-
-    public void setreservationDate(String reservationDate)
-    {
-        this.reservationDate = reservationDate;
-    }
-
-    public String getreservationDate()
-    {
-        return reservationDate;
-    }
 }
-

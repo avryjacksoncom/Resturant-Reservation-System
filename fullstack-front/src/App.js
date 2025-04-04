@@ -8,7 +8,7 @@ import Index from "./pages/Index";
 import AddUser from './pages/AddUser';
 import ReservationList from "./pages/ReservationList";
 import EditReservation from "./pages/EditReservation";
-
+import ViewUser from './pages/ViewUser';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 
@@ -26,6 +26,7 @@ function App() {
         <Route exact path="/editreservation" element={<EditReservation/>}/>
         <Route exact path = "/" element= {<Index/>}/>
         <Route exact path = "/add-user" element = {<AddUser/>}/>
+        <Route exact path ="/view" element= {<ViewUser/>}/>
 
       </Routes>
       </Router>
