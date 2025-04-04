@@ -198,3 +198,22 @@ footer {
   justify-content: center;
   align-items: center; /* this centers it horizontally */
 }
+
+.video-container{
+  margin: auto;
+  width: 100%;
+}
+
+
+#hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -1; /* if you want to put content on top */
+  object-fit: cover; /* ensures it covers the area without distortion */
+}
