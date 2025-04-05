@@ -7,6 +7,7 @@ import Footer from './parts/FooterSection/Footer.js';
 import Header from './parts/HeaderSection/Header.js';
 // import Hero from './parts/HeroSection/Hero.js';
 import Order from './parts/OrderSection/Order';
+import Reservation from './parts/ReservationSection/Reservation';
 // import ReservationSection from './parts/ReservationSection/Reservation.js';
 
 
@@ -26,8 +27,8 @@ function App() {
           
             <Route exact path = "/" element= {<Home />}/>
             <Route path ="/OrderSection" element={<Order />}/>
-            
-            {/* <Route path="/ReservationSection" element={<ReservationSection/>} />  */}
+            <Route path ="/ReservationSection" element={<Reservation />}/>
+           
           
           </Routes>
         <Footer />

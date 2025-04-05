@@ -20,7 +20,7 @@ export const Home = () => {
             Your video does not support this video tag, LOL.
           </video>
           <div className="hero-content">
-            <h2>Welcom to The WORM</h2>
+            <h2>Welcome to The WORM</h2>
             <p>Enjoy the food... or else</p>
 
             <Link to="/OrderSection"><button className="order-button">Order Now!</button></Link>

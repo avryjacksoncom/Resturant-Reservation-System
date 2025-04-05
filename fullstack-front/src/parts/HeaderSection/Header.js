@@ -17,7 +17,7 @@ const Header =() =>{
                 <a href ="/#Drinks">Drinks</a>
                 
                 <Link to="/OrderSection">Order</Link>
-                <Link to="/ReservationSection/test">Testing</Link>
+                <Link to="/ReservationSection">Reservation</Link>
                 {/* <Link to="/ReservationSection">Reservation</Link> */}
             </nav>
         </header>
