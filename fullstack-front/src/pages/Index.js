@@ -9,9 +9,11 @@ export default function Index() {
   return (
     <div>
       <section id="homepage-hero">
+        <div className = "video-container">
         <video autoPlay muted loop id="hero-video"  src= {bgVideo}>
           Your browser does not support the video tag.
         </video>
+        </div>
         <div className="hero-content">
           <h2>Welcome to The Worm</h2>
           <p>Enjoy the food... or else we eat you :</p>
