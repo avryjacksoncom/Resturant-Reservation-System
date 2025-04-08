@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 // try this later
+//worrry about cascading stuff later
 // @ManyToOne
 // @JoinColumns({
 //      @JoinColumn(name="id_brand", referencedColumnName="id1"),
