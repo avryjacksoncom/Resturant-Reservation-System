@@ -13,7 +13,7 @@ export default function ReservationList() {
     }, []);
 
     const loadUsers = async () => {
-        const result = await axios.get("http://localhost:8080/users");
+        const result = await axios.get("http://localhost:8080/user");
         setUsers(result.data);
     };
 
@@ -47,10 +47,10 @@ export default function ReservationList() {
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.reservationDate}</td>
                                 <td>
-                                    <Link className="btn btn-primary mx-2"
+                                    <Link className="btn btn-outline-primary mx-2"
                                         to={`/editreservation/${user.id}`}> Edit </Link>
                                     <button className="btn btn-outline-danger mx-2"
-                                        onClick={() => deleteUser(user.reservationId)}>
+                                        onClick={() => deleteUser(user.id)}>
                                         Delete
                                     </button>
                                 </td>
