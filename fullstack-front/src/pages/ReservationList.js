@@ -41,16 +41,16 @@ export default function ReservationList() {
                         {users.map((user, index) => (
                             <tr>
                                 <th scope="row" key={index}> {index + 1} </th>
-                                <td>{user.reservationId}</td>
                                 <td>{user.firstName}</td>
-                                <td>{user.guestAmount}</td>
+                                <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
-                                <td>{user.reservationDate}</td>
+                                <td>{user.date}</td>
                                 <td>
                                     <Link className="btn btn-outline-primary mx-2"
-                                        to={`/editreservation/${user.id}`}> Edit </Link>
+                                        to={`/editreservation/${user.reservationId}`}> Edit </Link>
+
                                     <button className="btn btn-outline-danger mx-2"
-                                        onClick={() => deleteUser(user.id)}>
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
                                     </button>
                                 </td>

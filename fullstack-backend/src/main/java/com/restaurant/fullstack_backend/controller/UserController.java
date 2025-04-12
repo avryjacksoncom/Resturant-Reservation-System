@@ -45,6 +45,9 @@ public class UserController {
         return userRepository.findById(id).map(user -> {
         user.setReservationId(newUser.getReservationId());
         user.setFirstName(newUser.getFirstName());
+        user.setPartySize(newUser.getPartySize());
+        user.setPhoneNumber(newUser.getPhoneNumber());
+        user.setDate(newUser.getDate());
         return userRepository.save(user);}).orElseThrow(() -> new UserNotFoundException(id));
 }
 
