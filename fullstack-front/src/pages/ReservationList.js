@@ -33,6 +33,7 @@ export default function ReservationList() {
                             <th scope="col">Name</th>
                             <th scope="col">Group Size</th>
                             <th scope="col">Phone Number</th>
+                            <th scope="col">Time</th>
                             <th scope="col">Date</th>
                             <th scope="col">Extra</th>
                         </tr>
@@ -44,6 +45,7 @@ export default function ReservationList() {
                                 <td>{user.firstName}</td>
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
+                                <td>{user.time}</td>
                                 <td>{user.date}</td>
                                 <td>
                                     <Link className="btn btn-outline-primary mx-2"
