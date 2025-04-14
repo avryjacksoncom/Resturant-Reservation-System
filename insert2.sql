@@ -48,4 +48,4 @@ INSERT INTO user (date, party_size, time, reservation_id, first_name, phone_numb
 ('2025-05-10', 3, '20:15', 1047, 'Ulysses', '555-9519', 'ulysses@example.com'),
 ('2025-05-11', 5, '17:30', 1048, 'Vanessa', '555-7535', 'vanessa@example.com'),
 ('2025-05-12', 8, '18:45', 1049, 'Walter', '555-3691', 'walter@example.com'),
-('2025-05-13', 2, '19:00', 1050, 'Xena', '555-1594', 'xena@example.com')
+('2025-05-13', 2, '19:00', 1050, 'Xena', '555-1594', 'xena@example.com');

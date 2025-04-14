@@ -35,6 +35,31 @@ const [users_state, setUsers] = useState([]);
   const matchedUserEmail = users_state.find(user => user.email === emailInput);
 // send a POST request to the Flask server
 
+const logic = async (e) =>
+  
+  {
+     const matchedUserEmail = users_state.find(user => user.email === emailInput);
+     setEmailInput(e.target.value)
+     
+     if(matchedUserEmail == e.target.value)
+        try {
+         const response = await fetch("http://127.0.0.1:5000/signal", {
+           method: "POST",
+           headers: {
+             "Content-Type": "application/json"
+           },
+           body: JSON.stringify({ signal: "run-stuff" })
+         });
+       
+         const data = await response.json();
+         console.log(data);  // Handle the response from Flask
+         } catch (error) {
+         console.error("Error sending signal:", error);
+         }
+
+  };
+  
+  
 const handleButtonClick = async () => {
     try {
       const response = await fetch("http://127.0.0.1:5000/signal", {
@@ -51,6 +76,7 @@ const handleButtonClick = async () => {
       console.error("Error sending signal:", error);
     }
   };
+
   return (
     <div>
       <input
@@ -76,8 +102,8 @@ const handleButtonClick = async () => {
       <input
         className="form-control"
         placeholder="Enter your email"
-        value={phoneInput}
-        onChange={(e) => setEmailInput(e.target.value)}
+        value={emailInput}
+        onChange={(e)=> logic(e)}
       />
       <button 
       className = "signal-button"
@@ -85,7 +111,6 @@ const handleButtonClick = async () => {
         Send to Email
 
       </button>
-
       <div>
         {matchedUserEmail ? (
           <div key={matchedUserEmail.reservationId}>

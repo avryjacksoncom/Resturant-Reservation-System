@@ -15,6 +15,7 @@ import "./style.css";
 export default function ReservationPage(){
   const [unformatedDate, setDate] = useState(new Date());
   const [dateYearFormat,setDateYearFormat] = useState(new Date());
+  const [emailInput, setEmailInput] = useState('');
   
   const [userLoad,setUserLoad] = useState([]);
   const [users_state, setUsers] = useState([]);
@@ -37,12 +38,12 @@ export default function ReservationPage(){
       time: "",
       partySize: "",
       email:"",
+      // email:"",
     });
 
-    const { firstName, phoneNumber, date, time, partySize } = user;
+    const { firstName, phoneNumber, date, time, partySize,email} = user;
     const onInputChange = (e) => 
     {
-
       setUser({ ...user, [e.target.name]: e.target.value });
     };
 
@@ -56,26 +57,50 @@ export default function ReservationPage(){
     const onSubmit = async (e) => 
       {
         e.preventDefault();
-        
+        const matchedUserEmail = users_state.find(user => user.email === emailInput);
         // Validate input fields
         if (!firstName || !phoneNumber || !partySize || !date || !time) 
           {
           alert("Please fill all fields!");
+          
           return;
         }
-      
-        try 
-        {
-          // Send data to the backend using POST request
-          await axios.post("http://localhost:8080/user", user); 
-          // navigate("/"); // Navigate after submission
-        } catch (error) 
-        {
-          console.error("There was an error adding the user!", error);
-          alert("Error adding user. Please try again.");
-        }
+        // if (!matchedUserEmail)
+        //   {
+        //       console.log("email invalid")
+        //       alert("Email not found in system!");
+        //   }
+        //   else
+        //   {
+            try 
+            {
+              // Send data to the backend using POST request
+              await axios.post("http://localhost:8080/user", user); 
+              try {
+                const response = await fetch("http://127.0.0.1:5000/signal", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ signal: "run-stuff" })
+                });
+              
+                const data = await response.json();
+                console.log(data);  // Handle the response from Flask
+                } catch (error) {
+                console.error("Error sending signal:", error);
+                }
+    
+              // navigate("/"); // Navigate after submission
+            } catch (error) 
+            {
+              console.error("There was an error adding the user!", error);
+              alert("Error adding user. Please try again.");
+            }
+          // }
+       
     };
-
+    // const matchedUserEmail = users_state.find(user => user.email === emailInput);
     const loadUsers = async () => 
     {
         const result = await axios.get("http://localhost:8080/user");
@@ -170,12 +195,11 @@ export default function ReservationPage(){
             />
         </div>
         <div className="form-group">
-          <label for="partySize">Email</label>
+          <label for="email">Email</label>
             <input
-              type="number"
               className="form-control"
               placeholder="Enter your email"
-              name="partySize"
+              name="email"
               value={email}
               onChange={onInputChange}
             />
