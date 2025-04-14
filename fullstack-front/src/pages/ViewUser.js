@@ -85,6 +85,7 @@ export default function ViewUser() {
                                 <td>{user.date}</td>
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
+                                <td>{user.email}</td>
                                  <td>
                                     <Link
                                         className="btn btn-primary"
@@ -132,6 +133,7 @@ export default function ViewUser() {
                                 <td>{user.date}</td>
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
+                                <td>{user.email}</td>
                                  <td>
                                     <Link
                                         className="btn btn-primary"

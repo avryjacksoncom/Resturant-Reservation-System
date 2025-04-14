@@ -1,11 +1,12 @@
 package com.restaurant.fullstack_backend.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 public class User {
@@ -16,6 +17,7 @@ public class User {
     private Long reservationId; // primarykey
     private String firstName;
     private String phoneNumber;
+    private String email;
     private int partySize;
     private LocalDate date; // Stores the date of reservation
     private LocalTime time; // Stores the time of reservation
@@ -69,4 +71,13 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

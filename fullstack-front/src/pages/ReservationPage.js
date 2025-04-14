@@ -1,11 +1,17 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
 import "./style.css";
 
+
+//  SO WHAT WE SAID ABOUT HOW TO  FIC THE ISSUE IS TO LIKE EITHER
+// FIND A WAY TO NOT USE AN INPUT BOX WITH THE ON SUBIMT BUTTON Form
+// OR WE USE THE WORK AROUND METHOD AS A LAST ReservationPage. THE 
+// DATE WILL JUST BE AUTO FILLED. FAKE FILLED when they hit SubmitEvent
+// and then after the submint grab that date, and post to database.
 export default function ReservationPage(){
   const [unformatedDate, setDate] = useState(new Date());
   const [dateYearFormat,setDateYearFormat] = useState(new Date());
@@ -14,6 +20,10 @@ export default function ReservationPage(){
   const [users_state, setUsers] = useState([]);
 
   const [timeButton, setTimeButton] = useState('');
+
+  // phone number filter
+  const [phoneInput, setPhoneInput] = useState('');
+
   
     useEffect(() => {
     loadUsers();
@@ -26,6 +36,7 @@ export default function ReservationPage(){
       date: "",
       time: "",
       partySize: "",
+      email:"",
     });
 
     const { firstName, phoneNumber, date, time, partySize } = user;
@@ -40,6 +51,7 @@ export default function ReservationPage(){
     {
         setTimeButton(timeString)
     };
+
 
     const onSubmit = async (e) => 
       {
@@ -157,11 +169,21 @@ export default function ReservationPage(){
               onChange={onInputChange}
             />
         </div>
+        <div className="form-group">
+          <label for="partySize">Email</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Enter your email"
+              name="partySize"
+              value={email}
+              onChange={onInputChange}
+            />
+        </div>
 
         <button type="submit" className="btn btn-outline-primary">
                     Submit
                   </button>
-
         <div>
           <h1>not available</h1>
                 {filteredUsers.map(user => (
@@ -185,15 +207,9 @@ export default function ReservationPage(){
               ))}
           </div>
 
-
-
-
-
-
         <div class="form-group">
           <label for="exampleFormControlSelect1">Example select</label>
           <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>

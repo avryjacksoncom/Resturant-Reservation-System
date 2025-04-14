@@ -10,6 +10,7 @@ import ReservationList from "./pages/ReservationList";
 import EditReservation from "./pages/EditReservation";
 import ViewUser from './pages/ViewUser';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import ReservationLookup from './pages/ReservationLookup';
 
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
         <Route exact path = "/" element= {<Index/>}/>
         <Route exact path = "/add-user" element = {<AddUser/>}/>
         <Route exact path ="/view" element= {<ViewUser/>}/>
-
+        <Route exact path ="/look-up" element={<ReservationLookup/>}/>
+  
       </Routes>
       </Router>
      
