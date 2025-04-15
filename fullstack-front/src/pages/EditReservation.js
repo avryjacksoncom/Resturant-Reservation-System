@@ -39,7 +39,7 @@ export default function EditReservation() {
     {
       // Send data to the backend using POST request
       await axios.put(`http://localhost:8080/user/${id}`, user); 
-      navigate("/reservationlist"); // Navigate after submission
+      navigate("/view"); // Navigate after submission
     } catch (error) 
     {
       console.error("There was an error editing the user!", error);
@@ -63,12 +63,12 @@ export default function EditReservation() {
           <form onSubmit={onSubmit}>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
-                First Name
+                Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your first name"
+                placeholder="Enter your name"
                 name="firstName"
                 value={firstName}
                 onChange={onInputChange}
@@ -127,7 +127,7 @@ export default function EditReservation() {
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/reservationlist">
+            <Link className="btn btn-outline-danger mx-2" to="/view">
               Cancel
             </Link>
           </form>

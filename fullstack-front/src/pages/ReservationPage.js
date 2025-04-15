@@ -50,12 +50,12 @@ export default function AddUser() {
           <form onSubmit={onSubmit}>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
-                First Name
+                Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your first name"
+                placeholder="Enter your name"
                 name="firstName"
                 value={firstName}
                 onChange={onInputChange}

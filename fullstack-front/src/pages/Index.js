@@ -94,7 +94,7 @@ export default function Index() {
 
       <footer>
         <p>Created by: <Link to="/nothing">The Worm</Link> © 2025</p>
-        <p><Link to="/reservationlist">login</Link></p>
+        <p><Link to="/view">login</Link></p>
       </footer>
     </div>
   );

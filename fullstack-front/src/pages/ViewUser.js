@@ -49,6 +49,10 @@ export default function ViewUser() {
       };
       const filteredUsers = filteredDataDate(dateYearFormat)
 
+      const deleteUser = async (id) => {
+        await axios.delete(`http://localhost:8080/user/${id}`)
+        loadUsers();
+    }
       
     return (
         <div className="container my-5">
@@ -86,17 +90,13 @@ export default function ViewUser() {
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}>
                                         Modify
                                     </Link>
                                 </td> 
@@ -133,19 +133,13 @@ export default function ViewUser() {
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
-                                    </Link>
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}> Edit </Link>
                                 </td> 
                                 
                             </tr>
