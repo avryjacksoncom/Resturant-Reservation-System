@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate,useParams } from "react-router-dom";
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
@@ -25,7 +25,7 @@ export default function ReservationPage(){
   // phone number filter
   const [phoneInput, setPhoneInput] = useState('');
 
-  
+  const {reservationId} = useParams()
     useEffect(() => {
     loadUsers();
   }, []);
@@ -101,6 +101,7 @@ export default function ReservationPage(){
        
     };
     // const matchedUserEmail = users_state.find(user => user.email === emailInput);
+
     const loadUsers = async () => 
     {
         const result = await axios.get("http://localhost:8080/user");

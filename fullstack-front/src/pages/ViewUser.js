@@ -6,11 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
 import "./style.css";
 
-
-// loaduses can still read even though i havent really defined anything in 
-//  the table. like in the backend.
-// so if you insert a table with an extra field. we can still access it
-// but we can not change it most likely
 export default function ViewUser() {
     const [users_state, setUsers] = useState([]);
 
@@ -54,6 +49,10 @@ export default function ViewUser() {
       };
       const filteredUsers = filteredDataDate(dateYearFormat)
 
+      const deleteUser = async (id) => {
+        await axios.delete(`http://localhost:8080/user/${id}`)
+        loadUsers();
+    }
       
     return (
         <div className="container my-5">
@@ -77,6 +76,7 @@ export default function ViewUser() {
                             <th scope="col">Date</th>
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -92,18 +92,14 @@ export default function ViewUser() {
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.email}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}>
+                                        Edit
                                     </Link>
                                 </td> 
                                 
@@ -127,7 +123,6 @@ export default function ViewUser() {
                             <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
                             <th scope="col">Actions</th>
-                        
                         </tr>
                     </thead>
                     <tbody>
@@ -142,19 +137,13 @@ export default function ViewUser() {
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.email}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
-                                    </Link>
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}> Edit </Link>
                                 </td> 
                                 
                             </tr>
