@@ -1,10 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 
-
-
-
-
 const ReservationLookup = () => {
 const [phoneInput, setPhoneInput] = useState('');
 const [emailInput, setEmailInput] = useState('');
@@ -23,6 +19,7 @@ const [users_state, setUsers] = useState([]);
     loadUsers();
   }, []);
 
+
   const loadUsers = async () => 
     {
         const result = await axios.get("http://localhost:8080/user");
@@ -30,6 +27,10 @@ const [users_state, setUsers] = useState([]);
         setUsers(result.data);
     };
 
+  // const hasPartialPhone = (phoneInput,users) =>
+  // {
+  //   return users.find(user => user.phoneNumber.includes(phoneInput));
+  // }
   // Filter users based on the phone number entered
   const matchedUser = users_state.find(user => user.phoneNumber === phoneInput);
   const matchedUserEmail = users_state.find(user => user.email === emailInput);
@@ -103,7 +104,6 @@ const handleButtonClick = async () => {
         className="form-control"
         placeholder="Enter your email"
         value={emailInput}
-        onChange={(e)=> logic(e)}
       />
       <button 
       className = "signal-button"

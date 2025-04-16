@@ -8,6 +8,8 @@ import "./style.css";
 
 export default function ViewUser() {
     const [users_state, setUsers] = useState([]);
+    const [phoneInput, setPhoneInput] = useState('');
+    const [emailInput, setEmailInput] = useState('');
 
     const { id } = useParams();
 
@@ -30,7 +32,9 @@ export default function ViewUser() {
       useEffect(() => {
       loadUsers();
     }, []);
-    
+    const matchedUserPhone = users_state.find(user => user.phoneNumber === phoneInput);
+    const matchedUserEmail = users_state.find(user => user.email === emailInput);
+
     const onChange = async (newDate) => 
         {
             
@@ -49,6 +53,7 @@ export default function ViewUser() {
       };
       const filteredUsers = filteredDataDate(dateYearFormat)
 
+
       const deleteUser = async (id) => {
         await axios.delete(`http://localhost:8080/user/${id}`)
         loadUsers();
@@ -56,6 +61,7 @@ export default function ViewUser() {
       
     return (
         <div className="container my-5">
+            
             <h2 className="text-center mb-4">Employee View</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
            <div className = "calendar-container">
@@ -63,6 +69,51 @@ export default function ViewUser() {
               {/* <p>Selected date: {unformatedDate}</p> */}
             
           </div>
+          <div>
+      <input
+        className="form-control"
+        placeholder="Enter your phone number"
+        value={phoneInput}
+        onChange={(e) => setPhoneInput(e.target.value)}
+      />
+
+      <div>
+        <h2>Look Up By Phone</h2>
+        {matchedUserPhone ? (
+          <div key={matchedUserPhone.reservationId}>
+            <h2>Reservation Found</h2>
+            <p>Name: {matchedUserPhone.firstName}</p>
+            <p>Date: {matchedUserPhone.date}</p>
+            <p>Time: {matchedUserPhone.time}</p>
+            <p>Reservation ID: {matchedUserPhone.reservationId}</p>
+          </div>
+        ) : (
+          null
+        )}
+      </div>
+      <input
+      type = "text"
+        className="form-control"
+        placeholder="Enter your email"
+        value={emailInput}
+        onChange={(e) => setEmailInput(e.target.value)}
+      />
+      <div>
+      <h2>Look Up By Email</h2>
+        {matchedUserEmail ? (
+          <div key={matchedUserEmail.reservationId}>
+            <h2>Reservation Found</h2>
+            <p>Name: {matchedUserEmail.firstName}</p>
+            <p>Date: {matchedUserEmail.date}</p>
+            <p>Time: {matchedUserEmail.time}</p>
+            <p>Reservation ID: {matchedUserEmail.reservationId}</p>
+          </div>
+        ) : (
+            null
+        )}
+      </div>
+
+    </div>
             <h2 className="text-center mb-4">Selected Reservations On Days</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
             <div className="table-responsive">

@@ -48,6 +48,7 @@ public class UserController {
         user.setPartySize(newUser.getPartySize());
         user.setPhoneNumber(newUser.getPhoneNumber());
         user.setDate(newUser.getDate());
+        user.setEmail(newUser.getEmail());
         return userRepository.save(user);}).orElseThrow(() -> new UserNotFoundException(id));
 }
 

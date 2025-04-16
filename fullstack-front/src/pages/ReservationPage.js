@@ -102,6 +102,8 @@ export default function ReservationPage(){
     };
     // const matchedUserEmail = users_state.find(user => user.email === emailInput);
 
+
+
     const loadUsers = async () => 
     {
         const result = await axios.get("http://localhost:8080/user");
@@ -198,6 +200,7 @@ export default function ReservationPage(){
         <div className="form-group">
           <label for="email">Email</label>
             <input
+              // type = "text"
               className="form-control"
               placeholder="Enter your email"
               name="email"

@@ -5,6 +5,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function EditReservation() {
   let navigate = useNavigate();
 
+
+
   const {id} = useParams();
 
   // Adjusted user object based on backend entity
@@ -126,7 +128,7 @@ export default function EditReservation() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="Email" className="form-label">
                 Email
               </label>
               <input
