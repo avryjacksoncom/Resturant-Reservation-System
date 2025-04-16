@@ -53,12 +53,29 @@ export default function ViewUser() {
       };
       const filteredUsers = filteredDataDate(dateYearFormat)
 
-
-      const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:8080/user/${id}`)
-        loadUsers();
-    }
       
+      const deleteUser = async (id) => 
+        
+    {
+        try {
+           
+         
+            await axios.post(`http://127.0.0.1:5000/signal2`, { signal2: "run-stuff", reservationId: id });
+    
+            console.log("Reservation ID sent");
+        } catch (error) {
+            console.error("Error sending ID", error);
+        }
+
+        await axios.delete(`http://localhost:8080/user/${id}`);
+        loadUsers();
+
+
+    
+    };
+
+
+
     return (
         <div className="container my-5">
             
