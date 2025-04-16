@@ -17,10 +17,10 @@ public class User {
     private Long reservationId; // primarykey
     private String firstName;
     private String phoneNumber;
-    private String email;
     private int partySize;
     private LocalDate date; // Stores the date of reservation
     private LocalTime time; // Stores the time of reservation
+    private String email;
 
     // Getters and setters
 
@@ -71,7 +71,7 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -79,5 +79,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
