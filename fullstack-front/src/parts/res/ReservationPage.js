@@ -4,7 +4,9 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
-import "./style.css";
+// import "./style.css";    fuck this style sheet it doesnt work sooo ill craft a new one just for it
+
+import "./thingy.css";
 
 
 //  SO WHAT WE SAID ABOUT HOW TO  FIC THE ISSUE IS TO LIKE EITHER

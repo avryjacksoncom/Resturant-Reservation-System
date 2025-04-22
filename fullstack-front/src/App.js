@@ -17,7 +17,7 @@ import Order from './parts/OrderSection/Order';
 
 // import RobertoMain from './pages/RobertoMain'  This is a bit redundant so its outta here
 
-import ReservationPage from './pages/ReservationPage';
+import ReservationPage from './parts/res/ReservationPage.js';
 import AddUser from './pages/AddUser';
 import ReservationList from "./pages/ReservationList";
 import EditReservation from "./pages/EditReservation";
@@ -35,15 +35,15 @@ function App() {
 
       <Routes>
       <Route path="/" element={<Home />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/reservations" element={<ReservationPage />} />
+          <Route path="/OrderSection" element={<Order />} />
+          <Route path="/ReservationPage" element={<ReservationPage />} />
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/editreservation" element={<EditReservation />} />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/view" element={<ViewUser />} />
           <Route path="/look-up" element={<ReservationLookup />} />
 
-          {/* Fallback route for undefined paths */}
+          {/* this is for a deadend page. For example... idk /orange */}
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
   
       </Routes>

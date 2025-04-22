@@ -16,7 +16,7 @@ const Header =() =>{
                 <a href ="/#Drinks">Drinks</a>
                 
                 <Link to="/OrderSection">Order</Link>
-                <Link to="/ReservationSection">Reservation</Link>
+                <Link to="/ReservationPage">Reservation</Link>
             </nav>
         </header>
     )

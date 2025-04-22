@@ -24,7 +24,7 @@ export const Home = () => {
             <p>Enjoy the food... or else</p>
 
             <Link to="/OrderSection"><button className="order-button">Order Now!</button></Link>
-            <Link to="/ReservationSection"> <button className="reservation-button">Reserve A Spot!</button></Link>
+            <Link to="/ReservationPage"> <button className="reservation-button">Reserve A Spot!</button></Link>
             {/* <Link to="/test"><button className="test button">this is testing a feature not actual use! PLEASE REMOVE</button></Link> */}
 
 
