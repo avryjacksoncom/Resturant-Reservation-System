@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
+import "./App.css";
 import Video from '../Assets/Videos/background-video.mp4';
 // import bgVideo from "Assets/Videos/background-video.mp4";
 // import bgVideo2 from ".Assets/Videos/background-video2.mp4";
