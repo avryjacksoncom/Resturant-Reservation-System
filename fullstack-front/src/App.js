@@ -44,7 +44,7 @@ function App() {
           <Route path="/look-up" element={<ReservationLookup />} />
 
           {/* this is for a deadend page. For example... idk /orange */}
-          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          <Route path="*" element={<h1>404 - Page Not Found! Lol, try again</h1>} />
   
       </Routes>
 

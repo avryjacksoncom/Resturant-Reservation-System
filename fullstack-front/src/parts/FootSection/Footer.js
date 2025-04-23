@@ -11,7 +11,7 @@ import './Footer.css';
             </p>
 
             <p>
-                <a href="/pages/reservationlist">Login</a>
+                <a href="/reservationlist">Login</a>
             </p>
         </footer>
     )
