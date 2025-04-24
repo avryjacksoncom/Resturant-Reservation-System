@@ -1,0 +1,26 @@
+{
+  "name": "csc481project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avryjacksoncom/csc481project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/avryjacksoncom/csc481project/issues"
+  },
+  "homepage": "https://github.com/avryjacksoncom/csc481project#readme",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "date-fns": "^4.1.0",
+    "react-calendar": "^5.1.0"
+  }
+}
