@@ -8,6 +8,7 @@ import EditReservation from "./pages/EditReservation";
 import ViewUser from './pages/ViewUser';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import ReservationLookup from './pages/ReservationLookup';
+import ViewTables from './pages/ViewTables';
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route exact path ="/view" element= {<ViewUser/>}/>
         <Route exact path ="/look-up" element={<ReservationLookup/>}/>
         <Route exact path = "editreservation/:id" element={<EditReservation/>}/>
+        <Route exact path = "/table" element={<ViewTables/>}/>
         
       </Routes>
       </Router>
