@@ -2,11 +2,6 @@
 
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-<<<<<<< HEAD
-// import RobertoOrderPage from './pages/RobertoOrderPage';
-import ReservationPage from './pages/ReservationPage';
-import Index from "./pages/Index";
-=======
 
 import {Home} from "./parts/HomeSection/Home";
 // import Index from "./pages/Index";     This is acting like the Home Page 
@@ -25,7 +20,6 @@ import Order from './parts/OrderSection/Order';
 import ReservationPage from './parts/res/ReservationPage.js';
 import AddUser from './pages/AddUser';
 import ReservationList from "./pages/ReservationList";
->>>>>>> avry-3
 import EditReservation from "./pages/EditReservation";
 import ViewUser from './pages/ViewUser';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
@@ -41,15 +35,6 @@ function App() {
 
         <Header/>
 
-<<<<<<< HEAD
-        {/* <Route exact path="/order" element={<RobertoOrderPage/>}/> */}
-        <Route exact path="/reservations" element={<ReservationPage/>}/>
-        <Route exact path = "/" element= {<Index/>}/>
-        <Route exact path ="/view" element= {<ViewUser/>}/>
-        <Route exact path ="/look-up" element={<ReservationLookup/>}/>
-        <Route exact path = "editreservation/:id" element={<EditReservation/>}/>
-        
-=======
       <Routes>
       <Route path="/" element={<Home />} />
           <Route path="/OrderSection" element={<Order />} />
@@ -63,7 +48,6 @@ function App() {
           {/* this is for a deadend page. For example... idk /orange */}
           <Route path="*" element={<h1>404 - Page Not Found! Lol, try again</h1>} />
   
->>>>>>> avry-3
       </Routes>
 
       <Footer/>
