@@ -6,13 +6,10 @@ import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
 import "./style.css";
 
-
-// loaduses can still read even though i havent really defined anything in 
-//  the table. like in the backend.
-// so if you insert a table with an extra field. we can still access it
-// but we can not change it most likely
 export default function ViewUser() {
     const [users_state, setUsers] = useState([]);
+    const [phoneInput, setPhoneInput] = useState('');
+    const [emailInput, setEmailInput] = useState('');
 
     const { id } = useParams();
 
@@ -35,7 +32,9 @@ export default function ViewUser() {
       useEffect(() => {
       loadUsers();
     }, []);
-    
+    const matchedUserPhone = users_state.find(user => user.phoneNumber === phoneInput);
+    const matchedUserEmail = users_state.find(user => user.email === emailInput);
+
     const onChange = async (newDate) => 
         {
             
@@ -55,8 +54,31 @@ export default function ViewUser() {
       const filteredUsers = filteredDataDate(dateYearFormat)
 
       
+      const deleteUser = async (id) => 
+        
+    {
+        try {
+           
+         
+            await axios.post(`http://127.0.0.1:5000/signal2`, { signal2: "run-stuff", reservationId: id });
+    
+            console.log("Reservation ID sent");
+        } catch (error) {
+            console.error("Error sending ID", error);
+        }
+
+        await axios.delete(`http://localhost:8080/user/${id}`);
+        loadUsers();
+
+
+    
+    };
+
+
+
     return (
         <div className="container my-5">
+            
             <h2 className="text-center mb-4">Employee View</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
            <div className = "calendar-container">
@@ -64,6 +86,53 @@ export default function ViewUser() {
               {/* <p>Selected date: {unformatedDate}</p> */}
             
           </div>
+          <div>
+      <input
+        className="form-control"
+        placeholder="Enter your phone number"
+        value={phoneInput}
+        onChange={(e) => setPhoneInput(e.target.value)}
+      />
+
+      <div>
+        <h2>Look Up By Phone</h2>
+        {matchedUserPhone ? (
+          <div key={matchedUserPhone.reservationId}>
+            <h2>Reservation Found</h2>
+            <p>Name: {matchedUserPhone.firstName}</p>
+            <p>Date: {matchedUserPhone.date}</p>
+            <p>Time: {matchedUserPhone.time}</p>
+            <p>Reservation ID: {matchedUserPhone.reservationId}</p>
+            <p>TableID: {matchedUserPhone.reservationId}</p>
+          </div>
+        ) : (
+          null
+        )}
+      </div>
+      <input
+      type = "text"
+        className="form-control"
+        placeholder="Enter your email"
+        value={emailInput}
+        onChange={(e) => setEmailInput(e.target.value)}
+      />
+      <div>
+      <h2>Look Up By Email</h2>
+        {matchedUserEmail ? (
+          <div key={matchedUserEmail.reservationId}>
+            <h2>Reservation Found</h2>
+            <p>Name: {matchedUserEmail.firstName}</p>
+            <p>Date: {matchedUserEmail.date}</p>
+            <p>Time: {matchedUserEmail.time}</p>
+            <p>Reservation ID: {matchedUserEmail.reservationId}</p>
+            <p>TableID: {matchedUserEmail.reservationId}</p>
+          </div>
+        ) : (
+            null
+        )}
+      </div>
+
+    </div>
             <h2 className="text-center mb-4">Selected Reservations On Days</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
             <div className="table-responsive">
@@ -77,6 +146,8 @@ export default function ViewUser() {
                             <th scope="col">Date</th>
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">TableID</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -91,19 +162,16 @@ export default function ViewUser() {
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.email}</td>
+                                <td>{user.tableId}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}>
+                                        Edit
                                     </Link>
                                 </td> 
                                 
@@ -126,8 +194,8 @@ export default function ViewUser() {
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
+                            <th scope="col">TableID</th>
                             <th scope="col">Actions</th>
-                        
                         </tr>
                     </thead>
                     <tbody>
@@ -141,20 +209,15 @@ export default function ViewUser() {
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.email}</td>
+                                <td>{user.tableId}</td>
                                  <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
+                                 <button className="btn btn-outline-danger mx-2"
+                                        onClick={() => deleteUser(user.reservationId)}>
                                         Delete
-                                    </Link>
+                                    </button>
                                     
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
-                                    </Link>
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editreservation/${user.reservationId}`}> Edit </Link>
                                 </td> 
                                 
                             </tr>

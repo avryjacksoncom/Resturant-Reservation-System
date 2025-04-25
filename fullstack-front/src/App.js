@@ -38,11 +38,11 @@ function App() {
           <Route path="/OrderSection" element={<Order />} />
           <Route path="/ReservationPage" element={<ReservationPage />} />
           <Route path="/reservationlist" element={<ReservationList />} />
-          <Route path="/editreservation" element={<EditReservation />} />
+          {/* <Route path="/editreservation" element={<EditReservation />} /> */}
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/view" element={<ViewUser />} />
           <Route path="/look-up" element={<ReservationLookup />} />
-
+          <Route exact path = "editreservation/:id" element={<EditReservation/>}/>
           {/* this is for a deadend page. For example... idk /orange */}
           <Route path="*" element={<h1>404 - Page Not Found! Lol, try again</h1>} />
   
