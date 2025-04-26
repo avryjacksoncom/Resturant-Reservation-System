@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
-import bgVideo from "./background-video.mp4";
-import bgVideo2 from "./background-video2.mp4";
+import "./App.css";
+import Video from '../Assets/Videos/background-video.mp4';
+// import bgVideo from "Assets/Videos/background-video.mp4";
+// import bgVideo2 from ".Assets/Videos/background-video2.mp4";
 
 
 export default function Index() {
@@ -10,7 +11,7 @@ export default function Index() {
     <div>
       <section id="homepage-hero">
         <div className = "video-container">
-        <video autoPlay muted loop id="hero-video"  src= {bgVideo}>
+        <video autoPlay muted loop id="hero-video"  src= {Video}>
           Your browser does not support the video tag.
         </video>
         </div>

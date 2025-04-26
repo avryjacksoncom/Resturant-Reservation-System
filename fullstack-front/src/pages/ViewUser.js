@@ -1,11 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-<<<<<<< HEAD
-
-export default function ViewUser() {
-    const [users_state, setUsers] = useState([]);
-=======
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
@@ -15,7 +10,6 @@ export default function ViewUser() {
     const [users_state, setUsers] = useState([]);
     const [phoneInput, setPhoneInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
->>>>>>> main
 
     const { id } = useParams();
 
@@ -29,20 +23,22 @@ export default function ViewUser() {
         setUsers(result.data);
     };
 
-<<<<<<< HEAD
-    return (
-        <div className="container my-5">
-            <h2 className="text-center mb-4">Reservations</h2>
-=======
     const [unformatedDate, setDate] = useState(new Date());
     const [dateYearFormat,setDateYearFormat] = useState(new Date());
     
     const [userLoad,setUserLoad] = useState([]);
-  
+    const [hiddenButtons, setHiddenButtons] = useState([]);
     
       useEffect(() => {
       loadUsers();
     }, []);
+
+    useEffect(() => {
+        const hidden = filteredUsersOpen
+          .map(user => user.tableId); // assuming tableId matches button index
+        setHiddenButtons(hidden);
+      }, [userLoad]); // update when these change
+    
     const matchedUserPhone = users_state.find(user => user.phoneNumber === phoneInput);
     const matchedUserEmail = users_state.find(user => user.email === emailInput);
 
@@ -59,12 +55,17 @@ export default function ViewUser() {
       const filteredDataDateAvailable = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
       };
       const filteredUsersOpen = filteredDataDateAvailable(dateYearFormat)
+      
+
+
   
       const filteredDataDate = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
       };
-      const filteredUsers = filteredDataDate(dateYearFormat)
+    //   const filteredUsers = filteredDataDate(dateYearFormat)
+      const filteredUsers = users_state.filter(user => user.date === dateYearFormat);
 
-      
+
+      const buttons = Array.from({ length: 20 }, (_, index) => `Table ${index + 1}`);
       const deleteUser = async (id) => 
         
     {
@@ -114,6 +115,7 @@ export default function ViewUser() {
             <p>Date: {matchedUserPhone.date}</p>
             <p>Time: {matchedUserPhone.time}</p>
             <p>Reservation ID: {matchedUserPhone.reservationId}</p>
+            <p>TableID: {matchedUserPhone.reservationId}</p>
           </div>
         ) : (
           null
@@ -135,16 +137,30 @@ export default function ViewUser() {
             <p>Date: {matchedUserEmail.date}</p>
             <p>Time: {matchedUserEmail.time}</p>
             <p>Reservation ID: {matchedUserEmail.reservationId}</p>
+            <p>TableID: {matchedUserEmail.reservationId}</p>
           </div>
         ) : (
             null
         )}
       </div>
-
+            
     </div>
+        <div>
+        {buttons.map((buttonText, index) => (
+              
+              !hiddenButtons.includes(index) &&(
+            <button 
+            type="button"
+            key={index}
+            id={`button-${index}`}
+            // onClick={() => onChangeButton(index + 1)}
+            >{buttonText}</button>
+            )))}
+          
+        </div>
+    
             <h2 className="text-center mb-4">Selected Reservations On Days</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
->>>>>>> main
             <div className="table-responsive">
                 <table className="table table-striped table-bordered shadow-sm">
                     <thead className="thead-dark">
@@ -156,14 +172,13 @@ export default function ViewUser() {
                             <th scope="col">Date</th>
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
-<<<<<<< HEAD
-=======
                             <th scope="col">Email</th>
+                            <th scope="col">TableID</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredUsersOpen.map((user, index) => (
+                        {filteredUsers.map((user, index) => (
                             <tr key={user.reservationId}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.reservationId}</td>
@@ -173,9 +188,10 @@ export default function ViewUser() {
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
                                 <td>{user.email}</td>
+                                <td>{user.tableId}</td>
                                  <td>
                                  <button className="btn btn-outline-danger mx-2"
-                                        onClick={() => deleteUser(user.reservationId)}>
+                                             onClick={() => deleteUser(user.reservationId)}>
                                         Delete
                                     </button>
                                     
@@ -204,7 +220,7 @@ export default function ViewUser() {
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
->>>>>>> main
+                            <th scope="col">TableID</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -218,23 +234,8 @@ export default function ViewUser() {
                                 <td>{user.date}</td>
                                 <td>{user.partySize}</td>
                                 <td>{user.phoneNumber}</td>
-<<<<<<< HEAD
-                                 <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Delete
-                                    </Link>
-                                    
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/viewuser/${user.reservation_id}`}
-                                    >
-                                        Modify
-                                    </Link>
-=======
                                 <td>{user.email}</td>
+                                <td>{user.tableId}</td>
                                  <td>
                                  <button className="btn btn-outline-danger mx-2"
                                         onClick={() => deleteUser(user.reservationId)}>
@@ -243,7 +244,6 @@ export default function ViewUser() {
                                     
                                     <Link className="btn btn-outline-primary mx-2"
                                         to={`/editreservation/${user.reservationId}`}> Edit </Link>
->>>>>>> main
                                 </td> 
                                 
                             </tr>
@@ -251,76 +251,7 @@ export default function ViewUser() {
                     </tbody>
                 </table>
             </div>
-<<<<<<< HEAD
-        </div>
-    );
-}
-
-
-// import axios from "axios";
-// import React, { useEffect,useState } from "react";
-// import { Link, useParams } from "react-router-dom";
-
-// export default function ViewUser() {
-//     const [users_sate, setUsers] = useState([]);
-
-//     const { id } = useParams();
-  
-//     useEffect(() => {
-//       loadUsers();
-//     }, []);
-  
-//     const loadUsers = async () => {
-//       const result = await axios.get("http://localhost:8080/user");
-//       console.log(result)
-//       setUsers(result.data);
-//     };
-  
-//     return (
-//       <div className="container">
-//         <div className="py-4">
-//           <table className="table border shadow">
-//             <thead>
-//               <tr>
-//                 <th scope="col">id</th>
-//                 <th scope="col">Name</th>
-//                 <th scope="col">time</th>
-//                 <th scope="col">date</th>
-//                 <th scope="col">party_size</th>
-//                 <th scope="col">phone_number</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {users_sate.map((users, index) => (
-//                 <tr key={users.reservation_id}>
-//                   <th scope="row" key={index}>
-//                     {index + 1}
-//                   </th>
-//                   <td>{users.reservation_id}</td>
-//                   <td>{users.first_name}</td>
-//                   <td>{users.time}</td>
-//                   <td>{users.date}</td>
-//                   <td>{users.party_size}</td>
-//                   <td>{users.phone_number}</td>
-//                   <td>
-//                     <Link
-//                       className="btn btn-primary mx-2"
-//                       to={`/viewuser/${users.reservation_id}`}
-//                     >
-//                       View
-//                     </Link>
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     );
-// }
-=======
             
         </div>
     );
 }
->>>>>>> main

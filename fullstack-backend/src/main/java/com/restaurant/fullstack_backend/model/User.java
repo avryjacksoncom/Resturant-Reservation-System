@@ -25,9 +25,16 @@ public class User {
 <<<<<<< HEAD
 =======
     private String email;
->>>>>>> main
-
+    private int tableId;
     // Getters and setters
+
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
 
     public int getPartySize() {
         return partySize;

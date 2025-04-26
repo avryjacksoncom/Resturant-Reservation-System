@@ -1,0 +1,16 @@
+INSERT INTO user (date, party_size, table_id, time, reservation_id, first_name, phone_number, email) VALUES
+('2025-04-30', 4, 1, '17:00', 1201, 'Alice', '555-2345', 'alice123@example.com'),
+('2025-04-30', 2, 2, '17:30', 1202, 'Bob', '555-3456', 'bob123@example.com'),
+('2025-04-30', 5, 3, '18:00', 1203, 'Charlie', '555-4567', 'charlie123@example.com'),
+('2025-04-30', 6, 4, '18:15', 1204, 'David', '555-5678', 'david123@example.com'),
+('2025-04-30', 3, 5, '18:30', 1205, 'Emma', '555-6789', 'emma123@example.com'),
+('2025-04-30', 7, 6, '18:45', 1206, 'Frank', '555-7890', 'frank123@example.com'),
+('2025-04-30', 4, 7, '19:00', 1207, 'Grace', '555-8901', 'grace123@example.com'),
+('2025-04-30', 2, 8, '19:15', 1208, 'Hannah', '555-9012', 'hannah123@example.com'),
+('2025-04-30', 6, 9, '19:30', 1209, 'Isaac', '555-0123', 'isaac123@example.com'),
+('2025-04-30', 3, 10, '19:45', 1210, 'Jack', '555-1234', 'jack123@example.com'),
+('2025-04-30', 5, 11, '20:00', 1211, 'Karen', '555-2345', 'karen123@example.com'),
+('2025-04-30', 4, 12, '20:15', 1212, 'Liam', '555-3456', 'liam123@example.com'),
+('2025-04-30', 7, 13, '20:30', 1213, 'Michael', '555-4567', 'michael123@example.com'),
+('2025-04-30', 2, 14, '20:45', 1214, 'Nina', '555-5678', 'nina123@example.com'),
+('2025-04-30', 3, 15, '21:00', 1215, 'Olivia', '555-6789', 'olivia123@example.com');

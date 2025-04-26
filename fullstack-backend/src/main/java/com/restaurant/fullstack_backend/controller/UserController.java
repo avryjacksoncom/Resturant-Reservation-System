@@ -57,6 +57,7 @@ public class UserController {
         user.setPhoneNumber(newUser.getPhoneNumber());
         user.setDate(newUser.getDate());
         user.setEmail(newUser.getEmail());
+        user.setTableId(newUser.getTableId());
         return userRepository.save(user);}).orElseThrow(() -> new UserNotFoundException(id));
 }
 
