@@ -27,11 +27,18 @@ export default function ViewUser() {
     const [dateYearFormat,setDateYearFormat] = useState(new Date());
     
     const [userLoad,setUserLoad] = useState([]);
-  
+    const [hiddenButtons, setHiddenButtons] = useState([]);
     
       useEffect(() => {
       loadUsers();
     }, []);
+
+    useEffect(() => {
+        const hidden = filteredUsersOpen
+          .map(user => user.tableId); // assuming tableId matches button index
+        setHiddenButtons(hidden);
+      }, [userLoad]); // update when these change
+    
     const matchedUserPhone = users_state.find(user => user.phoneNumber === phoneInput);
     const matchedUserEmail = users_state.find(user => user.email === emailInput);
 
@@ -53,7 +60,7 @@ export default function ViewUser() {
       };
       const filteredUsers = filteredDataDate(dateYearFormat)
 
-      
+      const buttons = Array.from({ length: 20 }, (_, index) => `Table ${index + 1}`);
       const deleteUser = async (id) => 
         
     {
@@ -131,8 +138,22 @@ export default function ViewUser() {
             null
         )}
       </div>
-
+            
     </div>
+        <div>
+        {buttons.map((buttonText, index) => (
+              
+              !hiddenButtons.includes(index) &&(
+            <button 
+            type="button"
+            key={index}
+            id={`button-${index}`}
+            // onClick={() => onChangeButton(index + 1)}
+            >{buttonText}</button>
+            )))}
+          
+        </div>
+    
             <h2 className="text-center mb-4">Selected Reservations On Days</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
             <div className="table-responsive">

@@ -26,11 +26,18 @@ export default function ReservationPage(){
 
   // phone number filter
   const [phoneInput, setPhoneInput] = useState('');
+  const [hiddenButtons, setHiddenButtons] = useState([]);
 
   const {reservationId} = useParams()
     useEffect(() => {
     loadUsers();
   }, []);
+
+  useEffect(() => {
+    const hidden = filteredUsersOpen
+      .map(user => user.tableId); // assuming tableId matches button index
+    setHiddenButtons(hidden);
+  }, [userLoad]); // update when these change
 
     // Adjusted user object based on backend entityx
     const [user, setUser] = useState({
@@ -59,7 +66,8 @@ export default function ReservationPage(){
     const onSubmit = async (e) => 
       {
         e.preventDefault();
-        const matchedUserEmail = users_state.find(user => user.email === emailInput);
+    
+      
         // Validate input fields
         if (!firstName || !phoneNumber || !partySize || !date || !time) 
           {
@@ -122,6 +130,40 @@ export default function ReservationPage(){
         setUserLoad(result.data);
         setDateYearFormat(formattedDate)
     };
+
+    // somehow this works and i dont know why
+
+
+    // const onChangeButton = async (buttonTableId) =>
+    // {
+    //       // alert(buttonTableId)
+    //       filteredUsers.forEach(user =>
+    //     {   
+    //         if (user.tableId === buttonTableId)
+    //         {
+    //             alert(`Found a match for table ID ${user.tableId} on ${user.date}`);
+    //             setHiddenButtons(prev => [...prev, buttonTableId]);
+    //         }
+
+    //   });
+
+    // }
+
+      
+      // const filteredDataDateAvailable2 = (exactDate) => {
+      //   return userLoad.filter(user => user.date === exactDate);
+      // };
+    
+      // const filteredUsersOpen2 = filteredDataDateAvailable2(dateYearFormat);
+    
+      // filteredUsersOpen2.forEach(user => {
+      //   if (user.date === newDate && user.tableId === buttonTableId) {
+      //     // ✅ Match found! You can do something here.
+      //     alert(`Found a match for table ID ${user.tableId} on ${user.date}`);
+      //   }
+      
+      // });
+    
     
     const filteredDataDateAvailable = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
     };
@@ -132,6 +174,9 @@ export default function ReservationPage(){
     const filteredUsers = filteredDataDate(dateYearFormat)
 
 
+
+    const buttons = Array.from({ length: 20 }, (_, index) => `Table ${index + 1}`);
+
     return(
       <form onSubmit={onSubmit}>
             <p>Selected date: {unformatedDate.toDateString()}</p>
@@ -139,6 +184,19 @@ export default function ReservationPage(){
             <ReactCalendar onChange={onChange}/>
               {/* <p>Selected date: {unformatedDate}</p> */}
           
+          </div>
+            <div className="button-grid-container">
+              
+            {buttons.map((buttonText, index) => (
+              
+              !hiddenButtons.includes(index) &&(
+            <button 
+            type="button"
+            key={index}
+            id={`button-${index}`}
+            // onClick={() => onChangeButton(index + 1)}
+            >{buttonText}</button>
+            )))}
           </div>
                <div class="form-group">
           <label for="exampleFormControlInput1">Name</label>
