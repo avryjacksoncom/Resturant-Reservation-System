@@ -55,10 +55,15 @@ export default function ViewUser() {
       const filteredDataDateAvailable = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
       };
       const filteredUsersOpen = filteredDataDateAvailable(dateYearFormat)
+      
+
+
   
       const filteredDataDate = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
       };
-      const filteredUsers = filteredDataDate(dateYearFormat)
+    //   const filteredUsers = filteredDataDate(dateYearFormat)
+      const filteredUsers = users_state.filter(user => user.date === dateYearFormat);
+
 
       const buttons = Array.from({ length: 20 }, (_, index) => `Table ${index + 1}`);
       const deleteUser = async (id) => 
@@ -173,7 +178,7 @@ export default function ViewUser() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredUsersOpen.map((user, index) => (
+                        {filteredUsers.map((user, index) => (
                             <tr key={user.reservationId}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.reservationId}</td>
@@ -186,7 +191,7 @@ export default function ViewUser() {
                                 <td>{user.tableId}</td>
                                  <td>
                                  <button className="btn btn-outline-danger mx-2"
-                                        onClick={() => deleteUser(user.reservationId)}>
+                                             onClick={() => deleteUser(user.reservationId)}>
                                         Delete
                                     </button>
                                     
