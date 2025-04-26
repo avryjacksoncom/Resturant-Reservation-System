@@ -7,7 +7,7 @@ const Header =() =>{
     return (
         <header className= "Header">
             <h1>
-                The Worm
+                The Worm 🪱
             </h1>
             <nav>
                 <a href ="/#Appetizers">Appetizers</a>

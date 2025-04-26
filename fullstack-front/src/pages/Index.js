@@ -13,7 +13,7 @@ export default function Index() {
         </video>
         </div>
         <div className="hero-content">
-          <h2>Welcome to The Worm</h2>
+          <h2>Welcome to The Worm 🪱</h2>
           <p>Enjoy the food... or else we eat you :</p>
           <Link to="/order">
             <button className="order-button">Order Now</button>
