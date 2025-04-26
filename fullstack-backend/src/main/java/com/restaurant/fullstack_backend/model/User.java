@@ -22,10 +22,13 @@ public class User {
     private int partySize;
     private LocalDate date; // Stores the date of reservation
     private LocalTime time; // Stores the time of reservation
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
     private String email;
     private int tableId;
+=======
+>>>>>>> Stashed changes
     // Getters and setters
 
     public int getTableId() {
@@ -84,11 +87,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    // public String getEmail() {
+    //     return email;
+    // }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // public void setEmail(String email) {
+    //     this.email = email;
+    // }
 }

@@ -3,7 +3,6 @@ package com.restaurant.fullstack_backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,8 +55,12 @@ public class UserController {
         user.setPartySize(newUser.getPartySize());
         user.setPhoneNumber(newUser.getPhoneNumber());
         user.setDate(newUser.getDate());
+<<<<<<< Updated upstream
         user.setEmail(newUser.getEmail());
         user.setTableId(newUser.getTableId());
+=======
+        // user.setEmail(newUser.getEmail());
+>>>>>>> Stashed changes
         return userRepository.save(user);}).orElseThrow(() -> new UserNotFoundException(id));
 }
 
