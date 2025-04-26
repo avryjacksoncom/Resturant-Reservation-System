@@ -79,10 +79,11 @@ export default function ReservationPage(){
       time: "",
       partySize: "",
       email:"",
+      tableId:"",
     });
 
     // Used for backend to and frontend. To iniralize the user with all the details.
-    const { firstName, phoneNumber, date, time, partySize,email} = user;
+    const { firstName, phoneNumber, date, time, partySize,email,tableId} = user;
 
     // When user puts all their information and hits the submit button.
     // The data is put in the backend.
@@ -100,7 +101,7 @@ export default function ReservationPage(){
     
       
         // Validate input fields
-        if (!firstName || !phoneNumber || !partySize || !date || !time) 
+        if (!firstName || !phoneNumber || !partySize || !date || !time || !tableId) 
           {
           alert("Please fill all fields!");
           
@@ -184,16 +185,29 @@ export default function ReservationPage(){
               
             {buttons.map((buttonText, index) => (
               
-              !hiddenButtons.includes(index) &&(
+              !hiddenButtons.includes(index + 1) &&(
             <button 
             className = "button-table"
             type="button"
             key={index}
-            id={`button-${index}`}
+            id={`button-${index + 1}`}
             // onClick={() => onChangeButton(index + 1)}
             >{buttonText}</button>
             )))}
           </div>
+          
+          <div class="form-group">
+          <label for="exampleFormControlInput1">Table Number</label>
+          <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter your Table Number"
+                      name="tableId"
+                      value={tableId}
+                      onChange={onInputChange}
+                    />
+        </div>
+
                <div class="form-group">
           <label for="exampleFormControlInput1">Name</label>
           <input

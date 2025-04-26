@@ -213,18 +213,18 @@ export default function ViewUser() {
         <div>
         {buttons.map((buttonText, index) => (
               
-              !hiddenButtons.includes(index) &&(
+              !hiddenButtons.includes(index + 1) &&(
             <button 
             className = "button-table"
             type="button"
             key={index}
-            id={`button-${index}`}
+            id={`button-${index + 1}`}
             // onClick={() => onChangeButton(index + 1)}
             >{buttonText}</button>
             )))}
           
         </div>
-    
+
             <h2 className="text-center mb-4">Selected Reservations On Days</h2>
             <p>Selected date: {unformatedDate.toDateString()}</p>
             <div className="table-responsive">

@@ -16,10 +16,11 @@ export default function EditReservation() {
     time: "",
     partySize: "",
     email:"",
+    tableId:"",
   });
 
   // Backend intializing for our table user.
-  const { firstName, phoneNumber, date, time, partySize,email } = user;
+  const { firstName, phoneNumber, date, time, partySize,email,tableId } = user;
 
   // Initializing the user input from the frontend to the backend.
   const onInputChange = (e) => {
@@ -39,11 +40,11 @@ export default function EditReservation() {
     e.preventDefault();
 
     // Validate input fields
-    if (!firstName || !phoneNumber || !date || !time || !partySize) {
+    if (!firstName || !phoneNumber || !date || !time || !partySize || !tableId) {
       alert("Please fill all fields!");
       return;
     }
-
+    
     try 
     {
       // Send data to the backend using POST request
@@ -73,6 +74,19 @@ export default function EditReservation() {
           <h2 className="text-center m-4">Edit Reservation</h2>
 
           <form onSubmit={onSubmit}>
+          <div className="mb-3">
+              <label htmlFor="TableId" className="form-label">
+                Table Number
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Enter table id"
+                name="tableId"
+                value={tableId}
+                onChange={onInputChange}
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
                 Name
