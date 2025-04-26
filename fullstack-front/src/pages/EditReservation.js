@@ -2,11 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+
+
 export default function EditReservation() {
   let navigate = useNavigate();
-
-
-
   const {id} = useParams();
 
   // Adjusted user object based on backend entity
@@ -19,16 +18,23 @@ export default function EditReservation() {
     email:"",
   });
 
+  // Backend intializing for our table user.
   const { firstName, phoneNumber, date, time, partySize,email } = user;
 
+  // Initializing the user input from the frontend to the backend.
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  // useEffect ensures that loadUser runs only once when the component mounts.
+  // This prevents multiple unnecessary API calls and ensures user data is loaded correctly.
   useEffect(()=>{
     loadUser()
   }, []);
 
+  // This is our onSubimt compnent. Grabs the data from the frontend, checks if fields
+  // are filled or not, and then sends all the data to the backend with the user's own
+  // reservationId.
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,10 +52,12 @@ export default function EditReservation() {
     } catch (error) 
     {
       console.error("There was an error editing the user!", error);
-      alert("Error editing user. Please try again.");
+      // alert("Error editing user. Please try again.");
     }
   };
 
+  // loadUser function gets all of our data using the primary key reservationId.
+  // We put this function into the useEffect to allow only one run of the API.
   const loadUser = async() => {
 
     const result = await axios.get(`http://localhost:8080/user/${id}`);
@@ -57,6 +65,7 @@ export default function EditReservation() {
 
   }
 
+  // Start of our frontend application.
   return (
     <div className="container">
       <div className="row">

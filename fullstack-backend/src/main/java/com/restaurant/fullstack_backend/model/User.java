@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class User {
@@ -20,6 +22,7 @@ public class User {
     private int partySize;
     private LocalDate date; // Stores the date of reservation
     private LocalTime time; // Stores the time of reservation
+
     private String email;
     private int tableId;
     // Getters and setters

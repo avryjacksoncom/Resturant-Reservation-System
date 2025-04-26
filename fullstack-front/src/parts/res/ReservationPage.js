@@ -4,42 +4,74 @@ import { Form, Link, useNavigate,useParams } from "react-router-dom";
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
-// import "./style.css";    fuck this style sheet it doesnt work sooo ill craft a new one just for it
-
+// import "./style.css";  
 import "./thingy.css";
 
 
-//  SO WHAT WE SAID ABOUT HOW TO  FIC THE ISSUE IS TO LIKE EITHER
+//  SO WHAT WE SAID ABOUT HOW TO  FIx THE ISSUE IS TO LIKE EITHER
 // FIND A WAY TO NOT USE AN INPUT BOX WITH THE ON SUBIMT BUTTON Form
 // OR WE USE THE WORK AROUND METHOD AS A LAST ReservationPage. THE 
 // DATE WILL JUST BE AUTO FILLED. FAKE FILLED when they hit SubmitEvent
 // and then after the submint grab that date, and post to database.
+
+// Fast forward to now i didn't add this maybe I will later whenever I
+// keep developing this.
+
+
+
+
+// I explained a lot on how these functions work on
+// Reservation Page and the View page. But ill add
+// the comments here anyway.
+
 export default function ReservationPage(){
+  // Allows us to get the date from the user with the react calendar.
   const [unformatedDate, setDate] = useState(new Date());
+
+  // We format the date to make it more readable for the user.
   const [dateYearFormat,setDateYearFormat] = useState(new Date());
-  const [emailInput, setEmailInput] = useState('');
-  
-  const [userLoad,setUserLoad] = useState([]);
+
+  // Allows us to navigate when a user submits a reservation.
+  const navigate = useNavigate(); 
+
+  // Used to set the backend users and to be used to be rendered.
   const [users_state, setUsers] = useState([]);
 
-  const [timeButton, setTimeButton] = useState('');
+  // Used to set the backend users and to be used to be rendered.
+  // This is used with the button function.
+  const [userLoad,setUserLoad] = useState([]);
 
-  // phone number filter
-  const [phoneInput, setPhoneInput] = useState('');
+  // Used for the table componeont. To show users if tables
+  // are available or not.
   const [hiddenButtons, setHiddenButtons] = useState([]);
 
+  // id for the backend if we use it.
   const {reservationId} = useParams()
+
+     // useEffect function same as in our EditReservation Page.
+    // useEffect runs loadUser  only once when the component mounts.
+    // This prevents multiple API calls and ensures user data is loaded correctly.
     useEffect(() => {
     loadUsers();
   }, []);
 
+    // Really cool function I thought of here. - Avry
+    // The userLoad here only gets the result from the onChange method.
+    // We setUserLoad to the result that we get from the backend, however,
+    // the onCange only grabs info from the certain date.
+
+    // So using the userLoad in the useEffect it will pull up the buttons of
+    // available tables while only selecting the dat that is picked from the 
+    // calendar.
+
+    // useEffect that combines the hidden feature and the onChange feature with userLoad.
   useEffect(() => {
     const hidden = filteredUsersOpen
-      .map(user => user.tableId); // assuming tableId matches button index
+      .map(user => user.tableId); // tableId matches button index
     setHiddenButtons(hidden);
-  }, [userLoad]); // update when these change
+  }, [userLoad]); // update when these change, which when the user clicks a date and it changes.
 
-    // Adjusted user object based on backend entityx
+    // Adjusted user object based on backend entity
     const [user, setUser] = useState({
       firstName: "",
       phoneNumber: "",
@@ -47,22 +79,21 @@ export default function ReservationPage(){
       time: "",
       partySize: "",
       email:"",
-      // email:"",
     });
 
+    // Used for backend to and frontend. To iniralize the user with all the details.
     const { firstName, phoneNumber, date, time, partySize,email} = user;
+
+    // When user puts all their information and hits the submit button.
+    // The data is put in the backend.
     const onInputChange = (e) => 
     {
       setUser({ ...user, [e.target.name]: e.target.value });
     };
 
-   
-    const onClickButtonChange = (timeString) =>
-    {
-        setTimeButton(timeString)
-    };
-
-
+    // The onsubmit allows the user to submit all their info into the backend
+    // as a reservation. This submit button is at the end and checks input fields
+    // if anything is missing.
     const onSubmit = async (e) => 
       {
         e.preventDefault();
@@ -75,13 +106,6 @@ export default function ReservationPage(){
           
           return;
         }
-        // if (!matchedUserEmail)
-        //   {
-        //       console.log("email invalid")
-        //       alert("Email not found in system!");
-        //   }
-        //   else
-        //   {
             try 
             {
               // Send data to the backend using POST request
@@ -101,25 +125,27 @@ export default function ReservationPage(){
                 console.error("Error sending signal:", error);
                 }
     
-              // navigate("/"); // Navigate after submission
+              navigate("/"); // Navigate after submission
             } catch (error) 
             {
               console.error("There was an error adding the user!", error);
               alert("Error adding user. Please try again.");
             }
-          // }
        
     };
-    // const matchedUserEmail = users_state.find(user => user.email === emailInput);
 
-
-
+    // loadUser function gets all of our data using the primary key reservationId.
+    // We put this function into the useEffect to allow only one run of the API.
     const loadUsers = async () => 
     {
         const result = await axios.get("http://localhost:8080/user");
         console.log(result);
         setUsers(result.data);
     };
+
+    // This onChange is the one I talked about previously before. We both format the date
+    // add the users that are only on the selected date, and output the formatted date
+    // to the users for readabliliy.
 
     const onChange = async (newDate) => 
     {
@@ -131,40 +157,7 @@ export default function ReservationPage(){
         setDateYearFormat(formattedDate)
     };
 
-    // somehow this works and i dont know why
-
-
-    // const onChangeButton = async (buttonTableId) =>
-    // {
-    //       // alert(buttonTableId)
-    //       filteredUsers.forEach(user =>
-    //     {   
-    //         if (user.tableId === buttonTableId)
-    //         {
-    //             alert(`Found a match for table ID ${user.tableId} on ${user.date}`);
-    //             setHiddenButtons(prev => [...prev, buttonTableId]);
-    //         }
-
-    //   });
-
-    // }
-
-      
-      // const filteredDataDateAvailable2 = (exactDate) => {
-      //   return userLoad.filter(user => user.date === exactDate);
-      // };
-    
-      // const filteredUsersOpen2 = filteredDataDateAvailable2(dateYearFormat);
-    
-      // filteredUsersOpen2.forEach(user => {
-      //   if (user.date === newDate && user.tableId === buttonTableId) {
-      //     // ✅ Match found! You can do something here.
-      //     alert(`Found a match for table ID ${user.tableId} on ${user.date}`);
-      //   }
-      
-      // });
-    
-    
+    // Used to filter by date with the users.
     const filteredDataDateAvailable = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
     };
     const filteredUsersOpen = filteredDataDateAvailable(dateYearFormat)
@@ -172,8 +165,10 @@ export default function ReservationPage(){
     const filteredDataDate = (exactDate) => { return userLoad.filter(user => user.date === exactDate)
     };
     const filteredUsers = filteredDataDate(dateYearFormat)
-
-
+    
+    // The amount of tables available by the restuarant.
+    // Theres a small error here. The array starts at 0 and not one, but our
+    // Tables start at 1 in the front end to ensure readability.
 
     const buttons = Array.from({ length: 20 }, (_, index) => `Table ${index + 1}`);
 
@@ -191,6 +186,7 @@ export default function ReservationPage(){
               
               !hiddenButtons.includes(index) &&(
             <button 
+            className = "button-table"
             type="button"
             key={index}
             id={`button-${index}`}
@@ -272,52 +268,6 @@ export default function ReservationPage(){
         <button type="submit" className="btn btn-outline-primary">
                     Submit
                   </button>
-        <div>
-          <h1>not available</h1>
-                {filteredUsers.map(user => (
-        <div key={user.reservationId}>
-            {user.firstName}
-           ({user.date} reservationDate)
-           ({user.time} rservationTime)
-           </div>
-              ))}
-         </div>   
-
-        
-         <div>
-          <h1>available</h1>
-              {filteredUsersOpen.map(user => (
-            <div key={user.reservationId}>
-          {user.firstName}
-           ({user.date} reservationDate)
-           ({user.time} rservationTime)
-           </div>
-              ))}
-          </div>
-
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Example select</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Example multiple select</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
       </form>
     )
 }

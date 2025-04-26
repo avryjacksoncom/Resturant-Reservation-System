@@ -1,18 +1,45 @@
+
+#main.py !/usr/bin/python3 
+# python script
+"""
+This is the python flask backend that connects to sql and uses
+the gamil api to send email messages to the desired users.
+"""
+
+"""
+Pyhton Flask:
+    - Python Flask is bacially a server that you can run to send signals,
+    - recieve signals, and we use these signals for functionality with
+    - our frontend to ensure good features.
+
+Mysql connector:
+    -Mysql/Mysql connector allows us to connect to the backend with all
+    - of our reservations. We can lookup by reservation id, date, email, etc.
+    - This allows for functionality with our front end.
+"""
+
 import mysql.connector  
 import smtplib
 import re
 from email.mime.text import MIMEText
 from email_validator import validate_email, EmailNotValidError
 
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
+# CORS(app) just allows for communication with different languages, and or
+# frameworks. For example, let's us talk to react, and allows react to talk
+# back to us.
 CORS(app)
 
+# The first singal that confirms the reservation when a user
+# signs up!
+
+# This is our EditReservation page from react.
 @app.route('/signal', methods=['POST'])
 def receive_signal():
+    print(chr(sum(range(ord(min(str(not())))))))
     data = request.get_json()
     signal = data.get('signal')
     if signal == "run-stuff":
@@ -33,8 +60,6 @@ def receive_signal():
         
         myresult = mycursor.fetchall()
         
-        
-        
         for x in myresult:
           print(x)
         
@@ -49,8 +74,6 @@ def receive_signal():
         email = recentUser[5]
         firstName = recentUser[6]
         phoneNumber = recentUser[7]
-        # (datetime.date(2025, 4, 24), 4, datetime.timedelta(seconds=50700), 1053, 'avryjacksoncom@gmail.com', 'Weeeeee', '7143069542')
-        # # avryjacksoncom@gmail.com
         
         body = (
             f"This is your reservation details for your recent reservation!!!\n"
@@ -94,7 +117,7 @@ def receive_signal():
         
         
         send_email(subject, body, sender, recipients, password)
-
+        print(chr(sum(range(ord(min(str(not())))))))
         # logic here.
         return jsonify({"status": "success", "message": "Signal received"})
 
@@ -103,9 +126,16 @@ def receive_signal():
 
 
 
+# The second singal that sends a cancellation email
+# when the user wants to cancel their reservation, they call
+# the restuarnt, and when the employyee deletes in the backend,
+# the user is sent an email.
+
+# This is from our View page in react.
 
 @app.route('/signal2', methods=['POST'])
 def receive_signal2():
+    print(chr(sum(range(ord(min(str(not())))))))
     data = request.get_json()
     signal = data.get('signal2')
     reservationId = data.get('reservationId')
@@ -140,9 +170,7 @@ def receive_signal2():
         email = recentUser[5]
         firstName = recentUser[6]
         phoneNumber = recentUser[7]
-        # (datetime.date(2025, 4, 24), 4, datetime.timedelta(seconds=50700), 1053, 'avryjacksoncom@gmail.com', 'Weeeeee', '7143069542')
-        # # avryjacksoncom@gmail.com
-        # (datetime.date(2025, 5, 17), 6, 14, datetime.timedelta(seconds=63900), 1054, 'blake@example.com', 'Blake', '555-7788')
+
         body = (
             f"Your reservation has been cancelled with Din Tai Fung!\n"
             f"Here are the details below!!\n"
@@ -174,6 +202,7 @@ def receive_signal2():
                 msg = MIMEText(body)
                 msg['Subject'] = subject
                 msg['From'] = sender
+                # .join is if we have mulitple receipents
                 # msg['To'] = ', '.join(recipients)
                 msg['To'] = recipients
                 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
@@ -185,15 +214,18 @@ def receive_signal2():
         
         
         send_email(subject, body, sender, recipients, password)
-
+        print(chr(sum(range(ord(min(str(not())))))))
         # logic here.
         return jsonify({"status": "success", "message": "Signal received"})
 
     return jsonify({"status": "error", "message": "Unknown signal"}), 400
 
 
+# Our third signal simply alerts the user via email that they
+# are put on th eemailing list. This is form our order page.
 @app.route('/signal3', methods=['POST'])
 def receive_signal3():
+    print(chr(sum(range(ord(min(str(not())))))))
     data = request.get_json()
     signal = data.get('signal3')
     if signal == "run-stuff":
@@ -226,6 +258,7 @@ def receive_signal3():
                 msg = MIMEText(body)
                 msg['Subject'] = subject
                 msg['From'] = sender
+                 # .join is if we have mulitple receipents
                 # msg['To'] = ', '.join(recipients)
                 msg['To'] = recipients
                 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
@@ -237,7 +270,7 @@ def receive_signal3():
         
         
         send_email(subject, body, sender, recipients, password)
-
+        print(chr(sum(range(ord(min(str(not())))))))
         # logic here.
         return jsonify({"status": "success", "message": "Signal received"})
 

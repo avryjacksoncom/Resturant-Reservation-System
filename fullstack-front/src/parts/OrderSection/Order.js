@@ -1,53 +1,44 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState,} from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import './Order.css';
-// import { Link } from "react-router-dom";
-// import Home from '../HomeSection/Home.js';
-// import Footer from '../FooterSection/Footer.js';
 import Sound from '../../Assets/Sounds/knockingDoor.mp3'
 
 //same issue with Home with the double dot thing. In this case since this is an entirely different file
 //the double dot thing is even stranger. Anyways to fix this type of issue you gotta '../../Assets/blah/blah.joe'; 
 
 const Order = () => {
-
+    let navigate = useNavigate();
     const [emailInput, setEmailInput] = useState('');
 
     useEffect(() => {
-        const timer =setTimeout(() => {
+
+        const timer =setTimeout(() => 
+          {
             const audio = new Audio(Sound);
             audio.play().catch(err => console.log("Playback Error: ",err));
-    }, 60000);
-    return () => clearTimeout(timer);
-    },[]);
+          }, 60000);
 
+        return () => clearTimeout(timer);
+    
+      },[]);
+    
+    
+      // Gets the users email input to be put on the emailing list.
     const onInputChange = (e) => 
         {
            setEmailInput(e.target.value)
         };
     
-
+    // Python flask backend. Sends user an email to be put on the mailing list.
+    // I explained this a bit more in ViwUser.js I think. 
+    // And or look at the python file main.py!
     const onSubmit = async (e) => 
         {
           e.preventDefault();
-        //   const matchedUserEmail = users_state.find(user => user.email === emailInput);
-          // Validate input fields
-        //   if (!firstName || !phoneNumber || !partySize || !date || !time) 
-        //     {
-        //     alert("Please fill all fields!");
-            
-        //     return;
-        //   }
-          // if (!matchedUserEmail)
-          //   {
-          //       console.log("email invalid")
-          //       alert("Email not found in system!");
-          //   }
-          //   else
-          //   {
+
               try 
               {
                 // Send data to the backend using POST request
-                // await axios.post("http://localhost:8080/user", user); 
                 try {
                   const response = await fetch("http://127.0.0.1:5000/signal3", {
                     method: "POST",
@@ -62,12 +53,10 @@ const Order = () => {
                   } catch (error) {
                   console.error("Error sending signal:", error);
                   }
-      
-                // navigate("/"); // Navigate after submission
+                  navigate("/");
               } catch (error) 
               {
                 console.error("There was an error sending email!", error);
-                alert("Error sending email. Please try again.");
               }
             // }
          
@@ -84,7 +73,6 @@ const Order = () => {
                 <h2>Coming Soon</h2>
                 <form id="signup-updates"
                  onSubmit={onSubmit}>
-                    {/* <label for="email">Stay up to date for everyone we dig up</label> */}
                     <label >Stay up to date for everyone we dig up</label>
                     <input 
                     className = "form-control"

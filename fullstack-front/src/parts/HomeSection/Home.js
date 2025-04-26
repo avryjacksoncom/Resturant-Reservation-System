@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Home.css';
-// import Footer from '../FooterSection/Footer.js';
-// import Header from '../HeaderSection/Header.js';
-// import Hero from '../HeroSection/Hero.js';
 import Video from '../../Assets/Videos/background-video.mp4';
-
-
-
 
 export const Home = () => {
   return (
@@ -16,7 +10,6 @@ export const Home = () => {
         
         <section id="homepage-hero">
           <video autoPlay muted loop id="hero-video" src={Video}>
-            {/* <source src='Assets/Videos/background-video.mp4' type="video/mp4" /> */}
             Your video does not support this video tag, LOL.
           </video>
           <div className="hero-content">
@@ -25,8 +18,6 @@ export const Home = () => {
 
             <Link to="/OrderSection"><button className="order-button">Order Now!</button></Link>
             <Link to="/ReservationPage"> <button className="reservation-button">Reserve A Spot!</button></Link>
-            {/* <Link to="/test"><button className="test button">this is testing a feature not actual use! PLEASE REMOVE</button></Link> */}
-
 
           </div>
         </section>

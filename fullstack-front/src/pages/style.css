@@ -61,3 +61,25 @@ body{
     font-weight: bold;
     color: #c7a37a;
   }
+
+  .center-look-up{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.container-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.input{
+  display: block;
+}
+
+.button-table{
+  color: rgb(0, 0, 0);
+  background-color: rgb(46, 206, 46);
+}
