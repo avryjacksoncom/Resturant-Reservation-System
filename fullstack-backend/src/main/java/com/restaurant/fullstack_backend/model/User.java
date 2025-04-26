@@ -21,8 +21,16 @@ public class User {
     private LocalDate date; // Stores the date of reservation
     private LocalTime time; // Stores the time of reservation
     private String email;
-
+    private int tableId;
     // Getters and setters
+
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
 
     public int getPartySize() {
         return partySize;

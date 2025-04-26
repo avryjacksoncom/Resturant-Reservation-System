@@ -103,10 +103,7 @@ export default function ViewUser() {
             <p>Date: {matchedUserPhone.date}</p>
             <p>Time: {matchedUserPhone.time}</p>
             <p>Reservation ID: {matchedUserPhone.reservationId}</p>
-<<<<<<< HEAD
-=======
             <p>TableID: {matchedUserPhone.reservationId}</p>
->>>>>>> avry-3
           </div>
         ) : (
           null
@@ -128,10 +125,7 @@ export default function ViewUser() {
             <p>Date: {matchedUserEmail.date}</p>
             <p>Time: {matchedUserEmail.time}</p>
             <p>Reservation ID: {matchedUserEmail.reservationId}</p>
-<<<<<<< HEAD
-=======
             <p>TableID: {matchedUserEmail.reservationId}</p>
->>>>>>> avry-3
           </div>
         ) : (
             null
@@ -153,10 +147,7 @@ export default function ViewUser() {
                             <th scope="col">Party Size</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
-<<<<<<< HEAD
-=======
                             <th scope="col">TableID</th>
->>>>>>> avry-3
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
